@@ -122,5 +122,27 @@ body .modal .modal-content .timer-container button:disabled {
 body .modal .modal-content .timer-container button:hover:not(:disabled) {
   background-color: black;
 }
+body .modal .modal-content .timer-container .timer-history {
+  margin-top: 20px;
+  padding: 15px;
+  border-top: 1px solid #ccc;
+}
+body .modal .modal-content .timer-container .timer-history .history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+body .modal .modal-content .timer-container .timer-history .history-table th, body .modal .modal-content .timer-container .timer-history .history-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+body .modal .modal-content .timer-container .timer-history .history-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+body .modal .modal-content .timer-container .timer-history .history-table tr:hover {
+  background-color: #f9f9f9;
+}
 
 /*# sourceMappingURL=style.css.map */
