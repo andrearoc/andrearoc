@@ -3,12 +3,12 @@
   "short_name": "Rocks",
   "icons": [
     {
-      "src": "C:/Users/andre/Projects/Git/MywebApp/andrearoc/image/life.png",
+      "src": "C:/Users/andre/Projects/Git/MywebApp/andrearoc/image/logo-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "C:/Users/andre/Projects/Git/MywebApp/andrearoc/image/life.png",
+      "src": "C:/Users/andre/Projects/Git/MywebApp/andrearoc/image/logo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
