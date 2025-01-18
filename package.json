@@ -1,0 +1,17 @@
+{
+  "name": "andrearoc",
+  "version": "1.0.0",
+  "description": "<!--\r **andrearoc/andrearoc** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "sass public/sass/scss/style.scss public/sass/css/style.css --style compressed",
+    "watch-css": "sass --watch public/sass/scss/style.scss:public/sass/css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.83.4"
+  }
+}
