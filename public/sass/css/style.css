@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #333;
   background-color: #f4f4f4;
 }
-
-header {
+body header {
   background-color: #4CAF50;
   color: white;
   height: 60px;
@@ -14,26 +13,13 @@ header {
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-main {
+body main {
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-footer {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.tool-button {
-  background-color: white;
+body main #home .tool-button {
   border: 2px solid #4CAF50;
   border-radius: 5px;
   padding: 10px 20px;
@@ -44,15 +30,19 @@ footer {
   gap: 10px;
   transition: background-color 0.3s ease;
 }
-.tool-button:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-.tool-button i {
+body main #home .tool-button i {
   font-size: 1.5rem;
 }
-
-#modal-backdrop {
+body footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+body #modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -63,11 +53,10 @@ footer {
   transition: opacity 0.3s ease;
   z-index: 1000;
 }
-#modal-backdrop.show {
+body #modal-backdrop.show {
   opacity: 1;
 }
-
-.modal {
+body .modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -80,49 +69,43 @@ footer {
   transition: all 0.3s ease;
   z-index: 1001;
 }
-.modal.show {
+body .modal.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
-
-.modal-header {
+body .modal .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-.modal-header h2 {
-  margin: 0;
-  color: #333;
-}
-
-.close-button {
+body .modal .modal-header .close-button {
   cursor: pointer;
   padding: 5px;
   color: #333;
   transition: opacity 0.3s ease;
 }
-.close-button:hover {
+body .modal .modal-header .close-button:hover {
   opacity: 0.7;
 }
-
-.modal-content {
+body .modal .modal-header h2 {
+  margin: 0;
+  color: #333;
+}
+body .modal .modal-content {
   min-width: 300px;
   max-width: 600px;
 }
-
-.timer-container {
+body .modal .modal-content .timer-container {
   padding: 20px;
   text-align: center;
 }
-
-.timer-display {
+body .modal .modal-content .timer-container .timer-display {
   font-size: 2em;
   margin: 20px 0;
   color: #333;
 }
-
-button {
+body .modal .modal-content .timer-container button {
   margin: 5px;
   padding: 10px 20px;
   border: none;
@@ -132,36 +115,12 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-button:disabled {
+body .modal .modal-content .timer-container button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-button:hover:not(:disabled) {
+body .modal .modal-content .timer-container button:hover:not(:disabled) {
   background-color: black;
-}
-
-#tool-container {
-  display: none;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  bottom: 60px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-}
-#tool-container.hidden {
-  display: none;
-}
-
-#close-tool {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #4CAF50;
-  align-self: flex-end;
 }
 
 /*# sourceMappingURL=style.css.map */
