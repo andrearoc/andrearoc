@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebApp</title>
+    <title>DrinApp</title>
     <link href="./public/sass/css/style.css" rel="stylesheet">
     <script type="module" defer src="./public/js/main.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,18 +12,38 @@
 </head>
 <body>
     <header>
-        <h1>WebApp</h1>
+        <h1>DrinApp</h1>
     </header>
     <main>
         <div id="home">
             <button class="tool-button" data-tool="timeTracker">
                 <i class="fas fa-clock"></i>
-                <span>Time Tracker</span>
+                <span>Timer</span>
+            </button>
+            <button class="tool-button" data-tool="calendar">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Calendario</span>
+            </button>
+            <button class="tool-button" data-tool="qrGenerator">
+                <i class="fas fa-qrcode"></i>
+                <span>Generatore di Codici QR</span>
+            </button>
+            <button class="tool-button" data-tool="unitConverter">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Converitore di Unità</span>
+            </button>
+            <button class="tool-button" data-tool="passwordGenerator">
+                <i class="fas fa-key"></i>
+                <span>Generatore di Password Sicure</span>
+            </button>
+            <button class="tool-button" data-tool="expenseEstimator">
+                <i class="fas fa-wallet"></i>
+                <span>Stime di Spesa e Budget</span>
             </button>
         </div>
     </main>
     <footer>
-        <p>&copy; 2025 WebApp</p>
+        <p>&copy; 2025 Copyright by Drin</p>
     </footer>
 </body>
 </html>
