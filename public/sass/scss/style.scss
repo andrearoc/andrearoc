@@ -1,0 +1,89 @@
+// Variables
+$primary-color: #4CAF50;
+$secondary-color: #f4f4f4;
+$text-color: #333;
+$header-height: 60px;
+
+// Base Styles
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: $text-color;
+    background-color: $secondary-color;
+}
+
+header {
+    background-color: $primary-color;
+    color: white;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+// Tool Buttons
+.tool-button {
+    background-color: white;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $primary-color;
+        color: white;
+    }
+}
+
+.tool-button i {
+    font-size: 1.5rem;
+}
+
+// Tool Container
+#tool-container {
+    display: none;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: $header-height;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+#tool-container.hidden {
+    display: none;
+}
+
+#close-tool {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: $primary-color;
+    align-self: flex-end;
+}
