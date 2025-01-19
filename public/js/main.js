@@ -6,8 +6,15 @@ import { generateQRCode, toggleQRCode } from './modules/qrGenerator.js';
 import { convertUnit } from './modules/unitConverter.js';
 import { generatePassword, togglePasswordGenerator } from './modules/passwordGenerator.js';
 import { estimateBudget, toggleExpenseEstimator } from './modules/expenseEstimator.js';
+import AUTH_PANEL from './modules/authPanel.js'; // Importa authPanel
 
 console.log('Main loaded');
+
+// Inizializza il pannello di autenticazione
+AUTH_PANEL.createPanel(() => {
+    // Callback per abilitare la visualizzazione del contenuto dopo l'autenticazione
+    document.getElementById('home').style.display = 'block';
+});
 
 // Inizializza il sistema modal
 MDL.init();
