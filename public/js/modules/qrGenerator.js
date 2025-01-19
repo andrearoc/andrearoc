@@ -75,7 +75,8 @@ const createInterface = () => {
 
 	container.innerHTML = `
 			<div class="input-group">
-					<input type="text" id="qr-input" placeholder="Inserisci il testo per il QR code" class="qr-input">
+					<h4>Incolla nel tab qui sotto il link di cui vuoi generare il QR code</h4>
+					<input type="text" id="qr-input" placeholder="..........." class="qr-input">
 					<select id="qr-format" class="qr-format">
 							<option value="svg">SVG</option>
 							<option value="png">PNG</option>

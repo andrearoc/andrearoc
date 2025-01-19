@@ -1,3 +1,8 @@
+$primary-color: #2A5D43;  // Verde pino
+$secondary-color: #E8F6F0; // Verde menta chiaro
+$third-color: #2f905e;
+$text-color: #3C4A3E;      // Verde scuro neutro
+$accent-color: #4cd68f;    // Pesca chiaro tenue
 $border-color: 1px solid #2f905e;
 $border-radius: 4px;
 
@@ -28,14 +33,14 @@ $border-radius: 4px;
 
 		.generate-button {
 			padding: 0.5rem 1rem;
-				background-color: #007bff;
+				background-color: $third-color;
 				color: white;
 				border: none;
 				border-radius: $border-radius;
 				cursor: pointer;
 
 				&:hover {
-					background-color: #0056b3;
+					background-color: $accent-color;
 			}
 		}
 	}
@@ -47,6 +52,9 @@ $border-radius: 4px;
 		text-align: center;
 
 		img, svg {
+			padding: 1rem;
+			border: $border-color;
+			border-radius: 4px;
 			max-width: 200px;
 			margin-bottom: 10px;
 		}

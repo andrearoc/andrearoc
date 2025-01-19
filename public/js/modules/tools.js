@@ -26,8 +26,10 @@ export const initializeTools = {
 
     unitConverter: () => {
         const content = document.createElement('div');
+        content.classList.add('converter');
         content.innerHTML = `
-            <div class="mb-4">
+            <h4><i class="fa-solid fa-ruler-horizontal"></i></h4>
+            <div class="unit-converter">
                 <input type="number" id="unit-input" placeholder="Valore" class="w-full mb-2">
                 <select id="unit-from" class="w-full mb-2">
                     <optgroup label="Lunghezza">
@@ -59,7 +61,9 @@ export const initializeTools = {
                         <option value="hectoliters">Ettolitri</option>
                     </optgroup>
                 </select>
-                <button id="convert-unit" class="w-full">Converti</button>
+                <div class="row-flex">
+                    <span>Converti</span><i id="convert-unit" class="fa-solid fa-rotate"></i>
+                </div>
             </div>
             <div id="unit-output" class="mt-4"></div>
         `;

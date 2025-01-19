@@ -1,0 +1,38 @@
+$primary-color: #2A5D43;  // Verde pino
+$secondary-color: #E8F6F0; // Verde menta chiaro
+$third-color: #2f905e;
+$text-color: #3C4A3E;      // Verde scuro neutro
+$accent-color: #4cd68f;    // Pesca chiaro tenue
+$border-color: 1px solid #2f905e;
+
+.converter {
+	align-items: center;
+
+	.unit-converter {
+		width: 100%;
+		padding: 1rem;
+		border: $border-color;
+
+		div.row-flex {
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+
+			span {
+				margin-right: 0.5rem;
+			}
+
+			i {
+				background-color: $secondary-color;
+				border: none;
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+			}
+		}
+	}
+}
