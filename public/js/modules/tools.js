@@ -27,27 +27,61 @@ export const initializeTools = {
     unitConverter: () => {
         const content = document.createElement('div');
         content.innerHTML = `
-            <input type="number" id="unit-input" placeholder="Valore">
-            <select id="unit-from">
-                <option value="meters">Metri</option>
-                <option value="centimeters">Centimetri</option>
-                <option value="kilometers">Chilometri</option>
-            </select>
-            <select id="unit-to">
-                <option value="centimeters">Centimetri</option>
-                <option value="meters">Metri</option>
-                <option value="kilometers">Chilometri</option>
-            </select>
-            <button id="convert-unit">Converti</button>
-            <div id="unit-output"></div>
+            <div class="mb-4">
+                <input type="number" id="unit-input" placeholder="Valore" class="w-full mb-2">
+                <select id="unit-from" class="w-full mb-2">
+                    <optgroup label="Lunghezza">
+                        <option value="meters">Metri</option>
+                        <option value="centimeters">Centimetri</option>
+                        <option value="kilometers">Chilometri</option>
+                        <option value="miles">Miglia</option>
+                    </optgroup>
+                    <optgroup label="Volume">
+                        <option value="liters">Litri</option>
+                        <option value="milliliters">Millilitri</option>
+                        <option value="centiliters">Centilitri</option>
+                        <option value="deciliters">Decilitri</option>
+                        <option value="hectoliters">Ettolitri</option>
+                    </optgroup>
+                </select>
+                <select id="unit-to" class="w-full mb-2">
+                    <optgroup label="Lunghezza">
+                        <option value="centimeters">Centimetri</option>
+                        <option value="meters">Metri</option>
+                        <option value="kilometers">Chilometri</option>
+                        <option value="miles">Miglia</option>
+                    </optgroup>
+                    <optgroup label="Volume">
+                        <option value="milliliters">Millilitri</option>
+                        <option value="liters">Litri</option>
+                        <option value="centiliters">Centilitri</option>
+                        <option value="deciliters">Decilitri</option>
+                        <option value="hectoliters">Ettolitri</option>
+                    </optgroup>
+                </select>
+                <button id="convert-unit" class="w-full">Converti</button>
+            </div>
+            <div id="unit-output" class="mt-4"></div>
         `;
-        MDL.open('Converitore di Unità', content);
+        MDL.open('Convertitore di Unità', content);
+
         document.getElementById('convert-unit').addEventListener('click', () => {
-            const value = parseFloat(document.getElementById('unit-input').value);
-            const fromUnit = document.getElementById('unit-from').value;
-            const toUnit = document.getElementById('unit-to').value;
-            const result = convertUnit(value, fromUnit, toUnit);
-            document.getElementById('unit-output').innerText = `Risultato: ${result}`;
+            try {
+                const value = parseFloat(document.getElementById('unit-input').value);
+                const fromUnit = document.getElementById('unit-from').value;
+                const toUnit = document.getElementById('unit-to').value;
+
+                if (isNaN(value)) {
+                    throw new Error('Inserire un valore numerico valido');
+                }
+
+                const result = convertUnit(value, fromUnit, toUnit);
+                document.getElementById('unit-output').innerHTML =
+                    `<div class="success">Risultato: ${result.toFixed(2)} ${toUnit}</div>`;
+            } catch (error) {
+                document.getElementById('unit-output').innerHTML =
+                    `<div class="error">Errore: ${error.message}</div>`;
+            }
         });
     },
 
