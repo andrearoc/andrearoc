@@ -3,8 +3,10 @@ import { createInterface } from './qrGenerator.js';
 import { convertUnit } from './unitConverter.js';
 import { generatePassword } from './passwordGenerator.js';
 import { expenseManager, EXPENSE_CATEGORIES, PRIORITY_LEVELS } from './expenseEstimator.js';
-import MDL from './modal.js';
 import HCL from './hourCalculator.js';
+import { DOC } from './documents.js';
+
+import MDL from './modal.js';
 
 export const initializeTools = {
     timeTracker: () => {
@@ -22,6 +24,11 @@ export const initializeTools = {
     qrGenerator: () => {
         const content = createInterface();
         MDL.open('Generatore di Codici QR', content);
+    },
+
+    documents: () => {
+        const content = DOC.createInterface();
+        MDL.open('Gestione Documenti', content);
     },
 
     unitConverter: () => {
