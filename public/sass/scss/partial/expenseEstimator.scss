@@ -1,3 +1,10 @@
+$primary-color: #2A5D43;  // Verde pino
+$secondary-color: #E8F6F0; // Verde menta chiaro
+$third-color: #2f905e;
+$text-color: #3C4A3E;      // Verde scuro neutro
+$accent-color: #4cd68f;    // Pesca chiaro tenue
+$border-color: 1px solid #2f905e;
+
 .summary-item {
 	margin-bottom: 1rem;
 	padding: 0.5rem;
@@ -25,4 +32,112 @@
 	color: #666;
 	font-style: italic;
 	padding: 0.5rem;
+}
+
+.modal .modal-content div, .modal .modal-content button {
+	.tabs {
+		flex-direction: row;
+		justify-content: space-around;
+
+		#tab-overview, #tab-expenses, #tab-wishlist {
+			background-color: $primary-color;
+			border: none;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+
+			i {
+				color: #ffffff;
+				font-size: 20px;
+			}
+		}
+
+		#tab-expenses {
+			background-color: $third-color;
+		}
+
+		#tab-wishlist {
+			background-color: $accent-color;
+		}
+	}
+
+	#overview-panel {
+		.input-group {
+			align-items: center;
+
+			button#save-income {
+				background-color: $secondary-color;
+				border: none;
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+			}
+		}
+
+		.backup-controls {
+			padding: 0.5rem;
+			margin-top: 1rem;
+			border: $border-color;
+
+			div.row-flex {
+				flex-direction: row;
+				justify-content: space-around;
+			  align-items: center;
+
+				i {
+					background-color: $secondary-color;
+					border: none;
+					border-radius: 50%;
+					width: 50px;
+					height: 50px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	#expenses-panel {
+		#expenses-list {
+			.expense-item {
+				padding: 0.5rem;
+			  margin-bottom: 0.5rem;
+				border: $border-color;
+
+				button {
+					width: fit-content;
+				}
+			}
+		}
+	}
+
+	#wishlist-panel {
+		#wishlist-form {
+			padding: 0.5rem;
+			margin-bottom: 0.5rem;
+			border: $border-color;
+		}
+
+		#wishlist-items {
+			.wishlist-item {
+				padding: 0.5rem;
+			  margin-bottom: 0.5rem;
+				border: $border-color;
+
+				button {
+					width: fit-content;
+				}
+			}
+		}
+	}
 }

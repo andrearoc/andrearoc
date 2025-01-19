@@ -151,8 +151,57 @@ class ExpenseManager {
         return storageManager.exportData();
     }
 
-    async importData(file) {
-        return await storageManager.importData(file);
+    async importData(file, mode = 'replace') {
+        try {
+            const text = await file.text();
+            const importedData = JSON.parse(text);
+
+            switch(mode) {
+                case 'merge':
+                    // Combina le spese, evitando duplicati basati su ID
+                    const mergedExpenses = [...this.expenses];
+                    importedData.expenses.forEach(newExp => {
+                        if (!mergedExpenses.some(exp => exp.id === newExp.id)) {
+                            mergedExpenses.push(newExp);
+                        }
+                    });
+                    this.expenses = mergedExpenses;
+
+                    // Combina la wishlist, evitando duplicati basati su ID
+                    const mergedWishlist = [...this.wishlist];
+                    importedData.wishlist.forEach(newItem => {
+                        if (!mergedWishlist.some(item => item.id === newItem.id)) {
+                            mergedWishlist.push(newItem);
+                        }
+                    });
+                    this.wishlist = mergedWishlist;
+
+                    // Per reddito e budget, mantiene i valori esistenti se presenti
+                    this.monthlyIncome = this.monthlyIncome || importedData.monthlyIncome;
+                    this.monthlyBudget = this.monthlyBudget || importedData.monthlyBudget;
+                    break;
+
+                case 'append':
+                    // Aggiunge semplicemente i nuovi dati in coda
+                    this.expenses = [...this.expenses, ...importedData.expenses];
+                    this.wishlist = [...this.wishlist, ...importedData.wishlist];
+                    break;
+
+                case 'replace':
+                default:
+                    // Sostituzione totale
+                    this.expenses = importedData.expenses;
+                    this.wishlist = importedData.wishlist;
+                    this.monthlyIncome = importedData.monthlyIncome;
+                    this.monthlyBudget = importedData.monthlyBudget;
+            }
+
+            storageManager.saveState(this);
+            return true;
+        } catch (error) {
+            console.error(`Errore nell'importazione dei dati: ${error.message}`);
+            return false;
+        }
     }
 }
 

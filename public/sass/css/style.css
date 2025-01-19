@@ -199,6 +199,83 @@ footer {
   padding: 0.5rem;
 }
 
+.modal .modal-content div .tabs, .modal .modal-content button .tabs {
+  flex-direction: row;
+  justify-content: space-around;
+}
+.modal .modal-content div .tabs #tab-overview, .modal .modal-content div .tabs #tab-expenses, .modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-overview, .modal .modal-content button .tabs #tab-expenses, .modal .modal-content button .tabs #tab-wishlist {
+  background-color: #2A5D43;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.modal .modal-content div .tabs #tab-overview i, .modal .modal-content div .tabs #tab-expenses i, .modal .modal-content div .tabs #tab-wishlist i, .modal .modal-content button .tabs #tab-overview i, .modal .modal-content button .tabs #tab-expenses i, .modal .modal-content button .tabs #tab-wishlist i {
+  color: #ffffff;
+  font-size: 20px;
+}
+.modal .modal-content div .tabs #tab-expenses, .modal .modal-content button .tabs #tab-expenses {
+  background-color: #2f905e;
+}
+.modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-wishlist {
+  background-color: #4cd68f;
+}
+.modal .modal-content div #overview-panel .input-group, .modal .modal-content button #overview-panel .input-group {
+  align-items: center;
+}
+.modal .modal-content div #overview-panel .input-group button#save-income, .modal .modal-content button #overview-panel .input-group button#save-income {
+  background-color: #E8F6F0;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.modal .modal-content div #overview-panel .backup-controls, .modal .modal-content button #overview-panel .backup-controls {
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #2f905e;
+}
+.modal .modal-content div #overview-panel .backup-controls div.row-flex, .modal .modal-content button #overview-panel .backup-controls div.row-flex {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.modal .modal-content div #overview-panel .backup-controls div.row-flex i, .modal .modal-content button #overview-panel .backup-controls div.row-flex i {
+  background-color: #E8F6F0;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item, .modal .modal-content button #expenses-panel #expenses-list .expense-item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #2f905e;
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item button, .modal .modal-content button #expenses-panel #expenses-list .expense-item button {
+  width: fit-content;
+}
+.modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #2f905e;
+}
+.modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item button, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item button {
+  width: fit-content;
+}
+
 .modal .modal-content .timer-container {
   padding: 1.25rem;
   text-align: center;

@@ -105,9 +105,9 @@ export const initializeTools = {
         const content = document.createElement('div');
         content.innerHTML = `
             <div class="tabs">
-                <button id="tab-overview" class="tab active">Panoramica</button>
-                <button id="tab-expenses" class="tab">Spese</button>
-                <button id="tab-wishlist" class="tab">Wishlist</button>
+                <button id="tab-overview" class="tab active"><i class="fa-solid fa-house"></i></button>
+                <button id="tab-expenses" class="tab"><i class="fa-solid fa-euro-sign"></i></button>
+                <button id="tab-wishlist" class="tab"><i class="fa-solid fa-heart"></i></button>
             </div>
 
             <div id="overview-panel" class="panel">
@@ -120,10 +120,21 @@ export const initializeTools = {
                     <div id="summary-content"></div>
                 </div>
                 <!-- Aggiungi qui i controlli di backup -->
-                <div class="backup-controls mt-4">
-                    <button id="export-data" class="w-full mb-2">Esporta Dati</button>
-                    <input type="file" id="import-data" accept=".json" style="display: none">
-                    <button id="import-trigger" class="w-full">Importa Dati</button>
+                <div class="backup-controls">
+                    <div class="row-flex">
+                        <span>Esporta Dati</span><i id="export-data" class="fa-solid fa-file-export"></i>
+                        <input type="file" id="import-data" accept=".json" style="display: none">
+                    </div>
+                    <div class="import-options mb-2">
+                        <select id="import-mode" class="w-full">
+                            <option value="replace">Sostituisci dati esistenti</option>
+                            <option value="merge">Unisci con dati esistenti</option>
+                            <option value="append">Aggiungi in coda</option>
+                        </select>
+                    </div>
+                    <div class="row-flex">
+                        <span>Importa Dati</span><i id="import-trigger" class="fa-solid fa-file-import"></i>
+                    </div>
                 </div>
             </div>
 
@@ -163,13 +174,21 @@ export const initializeTools = {
         // Gestione tab
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', (e) => {
+                const clickedTab = e.target.closest('.tab'); // Usa closest per gestire il click sull'icona
+                if (!clickedTab) return;
+
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
-                e.target.classList.add('active');
-                const panelId = e.target.id.replace('tab-', '') + '-panel';
-                document.getElementById(panelId).style.display = 'block';
-                if (panelId === 'overview-panel') {
-                    updateSummary();
+
+                clickedTab.classList.add('active');
+                const panelId = clickedTab.id.replace('tab-', '') + '-panel';
+                const panel = document.getElementById(panelId);
+
+                if (panel) {
+                    panel.style.display = 'block';
+                    if (panelId === 'overview-panel') {
+                        updateSummary();
+                    }
                 }
             });
         });
@@ -220,12 +239,15 @@ export const initializeTools = {
 
         document.getElementById('import-data').addEventListener('change', async (e) => {
             if (e.target.files.length > 0) {
-                const success = await expenseManager.importData(e.target.files[0]);
+                const mode = document.getElementById('import-mode').value;
+                const success = await expenseManager.importData(e.target.files[0], mode);
                 if (success) {
-                    storageManager.loadState(expenseManager);
                     updateExpensesList();
                     updateWishlist();
                     updateSummary();
+                    alert('Importazione completata con successo!');
+                } else {
+                    alert('Errore durante l\'importazione dei dati');
                 }
             }
         });
@@ -273,7 +295,7 @@ export const initializeTools = {
                     ${affordableItems.length > 0 ?
                         affordableItems.map(item => `
                             <div class="wishlist-available">
-                                <span>${item.name}</span>: ${item.estimatedPrice.toFixed(2)}€
+                                <span>${item.name} :</span> ${item.estimatedPrice.toFixed(2)}€
                                 <span class="percentage">(${(item.estimatedPrice/monthlyData.savings*100).toFixed(1)}% dei risparmi)</span>
                             </div>
                         `).join('')
