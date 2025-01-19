@@ -1,11 +1,4 @@
-// Colori principali
-$primary-color: #2A5D43;  // Verde pino
-$border-color: 1px solid #2f905e;
-
-// Variabili aggiuntive
-$font-size-base: 16px;
-$border-radius: 8px;
-$header-height: 4rem;
+@use 'variables' as *;
 
 header {
 	background-color: $primary-color;

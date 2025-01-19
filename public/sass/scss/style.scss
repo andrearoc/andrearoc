@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use 'variables' as *;
 
 @use './header.scss';
 @use './main.scss';
@@ -11,31 +11,6 @@
 @use './partial/hourCalculator.scss';
 @use './partial/qrGenerator.scss';
 
-// Colori principali
-$primary-color: #2A5D43;  // Verde pino
-$secondary-color: #E8F6F0; // Verde menta chiaro
-$text-color: #3C4A3E;      // Verde scuro neutro
-$accent-color: #4cd68f;    // Pesca chiaro tenue
-$border-color: 1px solid #2f905e;
-
-// Versioni lighten e darken
-$primary-color-light: color.scale($primary-color, $lightness: 15%);
-$primary-color-dark: color.scale($primary-color, $lightness: -15%);
-
-$secondary-color-light: color.scale($secondary-color, $lightness: 15%);
-$secondary-color-dark: color.scale($secondary-color, $lightness: -15%);
-
-$text-color-light: color.scale($text-color, $lightness: 15%);
-$text-color-dark: color.scale($text-color, $lightness: -15%);
-
-$accent-color-light: color.scale($accent-color, $lightness: 15%);
-$accent-color-dark: color.scale($accent-color, $lightness: -15%);
-
-// Variabili aggiuntive
-$font-size-base: 16px;
-$border-radius: 8px;
-$header-height: 4rem;
-$modal-animation-time: 0.3s;
 
 // Base Styles
 body {

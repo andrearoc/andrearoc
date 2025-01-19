@@ -247,7 +247,7 @@ footer {
   font-size: 20px;
 }
 .modal .modal-content div .tabs #tab-expenses, .modal .modal-content button .tabs #tab-expenses {
-  background-color: #2f905e;
+  background-color: #E8F6F0;
 }
 .modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-wishlist {
   background-color: #4cd68f;
@@ -334,7 +334,7 @@ footer {
   cursor: not-allowed;
 }
 .modal .modal-content .timer-container button:hover:not(:disabled) {
-  background-color: #28543d;
+  background-color: rgb(35.7, 79.05, 56.95);
   transform: translateY(-0.125rem);
 }
 .modal .modal-content .timer-container .timer-history {
@@ -357,7 +357,7 @@ footer {
   font-weight: 600;
 }
 .modal .modal-content .timer-container .timer-history .history-table tr:hover {
-  background-color: #62eaa3;
+  background-color: rgb(102.85, 220.15, 159.8);
 }
 
 .qr-generator-container {
@@ -376,19 +376,19 @@ footer {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #2f905e;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .qr-generator-container .input-group .qr-format {
   padding: 8px;
   border: 1px solid #2f905e;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .qr-generator-container .input-group .generate-button {
   padding: 0.5rem 1rem;
-  background-color: #2f905e;
+  background-color: #2A5D43;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
 }
 .qr-generator-container .input-group .generate-button:hover {
@@ -414,7 +414,7 @@ footer {
   background-color: #28a745;
   color: white;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .qr-generator-container .qr-output .download-button:hover {
   background-color: #218838;

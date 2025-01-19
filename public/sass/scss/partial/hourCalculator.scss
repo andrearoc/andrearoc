@@ -1,13 +1,4 @@
-$primary-color: #2A5D43;  // Verde pino
-$secondary-color: #E8F6F0; // Verde menta chiaro
-$text-color: #3C4A3E;      // Verde scuro neutro
-$border-color: 1px solid #2f905e;
-
-$primary-color-dark: #28543d;
-$accent-color-light: #62eaa3;
-
-$border-radius: 8px;
-$modal-animation-time: 0.3s;
+@use '../variables' as *;
 
 .modal {
 	.modal-content {
