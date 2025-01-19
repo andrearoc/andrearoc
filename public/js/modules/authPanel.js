@@ -6,24 +6,15 @@ const AUTH_PANEL = (() => {
   const createPanel = (onSuccess) => {
     const panel = document.createElement("div");
     panel.id = "auth-panel";
-    panel.style.position = "fixed";
-    panel.style.top = 0;
-    panel.style.left = 0;
-    panel.style.width = "100%";
-    panel.style.height = "100%";
-    panel.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-    panel.style.display = "flex";
-    panel.style.justifyContent = "center";
-    panel.style.alignItems = "center";
-    panel.style.zIndex = 1000;
 
     panel.innerHTML = `
-      <div style="background: white; padding: 20px; border-radius: 10px; text-align: center;">
+      <div>
+        <img src="./image/logo-192x192.png" alt="Logo">
         <h2>Autenticazione Richiesta</h2>
         <p>Inserisci le tue credenziali per accedere.</p>
-        <input type="email" id="auth-email" placeholder="Email" style="display: block; margin: 10px auto; padding: 10px; width: 80%;" />
-        <input type="password" id="auth-password" placeholder="Password" style="display: block; margin: 10px auto; padding: 10px; width: 80%;" />
-        <button id="auth-submit-btn" style="padding: 10px 20px;">Accedi</button>
+        <input type="email" id="auth-email" placeholder="Email"/>
+        <input type="password" id="auth-password" placeholder="Password"/>
+        <button id="auth-submit-btn"><i class="fa-solid fa-right-to-bracket"></i></button>
       </div>
     `;
     document.body.appendChild(panel);

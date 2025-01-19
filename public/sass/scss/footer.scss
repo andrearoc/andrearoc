@@ -1,0 +1,22 @@
+// Colori principali
+$primary-color: #2A5D43;  // Verde pino
+$secondary-color: #E8F6F0; // Verde menta chiaro
+$text-color: #3C4A3E;      // Verde scuro neutro
+$accent-color: #4cd68f;    // Pesca chiaro tenue
+$border-color: 1px solid #2f905e;
+
+// Variabili aggiuntive
+$font-size-base: 16px;
+$border-radius: 8px;
+$header-height: 4rem;
+$modal-animation-time: 0.3s;
+
+footer {
+	background-color: $primary-color;
+	color: white;
+	text-align: center;
+	padding: 0.75rem 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}

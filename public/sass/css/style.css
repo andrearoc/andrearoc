@@ -1,11 +1,4 @@
-body {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  color: #3C4A3E;
-  background-color: #E8F6F0;
-  font-size: 16px;
-}
-body header {
+header {
   background-color: #2A5D43;
   color: white;
   height: 4rem;
@@ -14,17 +7,18 @@ body header {
   justify-content: center;
   box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.08);
 }
-body main {
+
+main {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-body main #home .tool-button {
+main #home .tool-button {
   display: flex;
   justify-content: space-between;
   width: 90%;
-  border: 0.125rem solid #4cd68f;
+  border: 1px solid #2f905e;
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin: 0.625rem;
@@ -36,15 +30,16 @@ body main #home .tool-button {
   background-color: white;
   box-shadow: 0 0.25rem 1rem rgba(255, 126, 103, 0.1);
 }
-body main #home .tool-button:hover {
+main #home .tool-button:hover {
   transform: translateY(-0.125rem);
   box-shadow: 0 0.5rem 1.5rem rgba(255, 126, 103, 0.2);
 }
-body main #home .tool-button i {
+main #home .tool-button i {
   font-size: 1.5rem;
   color: #2A5D43;
 }
-body footer {
+
+footer {
   background-color: #2A5D43;
   color: white;
   text-align: center;
@@ -53,7 +48,8 @@ body footer {
   bottom: 0;
   width: 100%;
 }
-body #modal-backdrop {
+
+#modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -64,10 +60,11 @@ body #modal-backdrop {
   transition: opacity 0.3s ease;
   z-index: 1000;
 }
-body #modal-backdrop.show {
+#modal-backdrop.show {
   opacity: 1;
 }
-body .modal {
+
+.modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -80,50 +77,108 @@ body .modal {
   transition: all 0.3s ease;
   z-index: 1001;
 }
-body .modal.show {
+.modal.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
-body .modal .modal-header {
+.modal .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
 }
-body .modal .modal-header .close-button {
+.modal .modal-header .close-button {
   cursor: pointer;
   padding: 0.375rem;
   color: #3C4A3E;
   transition: all 0.3s ease;
 }
-body .modal .modal-header .close-button:hover {
+.modal .modal-header .close-button:hover {
   opacity: 0.7;
   transform: rotate(90deg);
 }
-body .modal .modal-header h2 {
+.modal .modal-header h2 {
   margin: 0;
   color: #3C4A3E;
   font-size: 1.5rem;
 }
-body .modal .modal-content {
+.modal .modal-content {
   min-width: 18.75rem;
   max-width: 37.5rem;
 }
-body .modal .modal-content input, body .modal .modal-content select, body .modal .modal-content button {
+.modal .modal-content div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+}
+.modal .modal-content input, .modal .modal-content select, .modal .modal-content button {
   padding: 0.5rem;
   margin: 0.5rem 0;
 }
-body .modal .modal-content .timer-container {
+
+#auth-panel {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#auth-panel div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+#auth-panel div img {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+}
+#auth-panel div #auth-email, #auth-panel div #auth-password {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+}
+#auth-panel div #auth-submit-btn {
+  background-color: #2A5D43;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#auth-panel div #auth-submit-btn:hover {
+  background-color: #E8F6F0;
+}
+#auth-panel div #auth-submit-btn i {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.modal .modal-content .timer-container {
   padding: 1.25rem;
   text-align: center;
 }
-body .modal .modal-content .timer-container .timer-display {
+.modal .modal-content .timer-container .timer-display {
   font-size: 3rem;
   margin: 1.25rem 0;
   color: #3C4A3E;
   font-weight: 600;
 }
-body .modal .modal-content .timer-container button {
+.modal .modal-content .timer-container button {
   margin: 0.375rem;
   padding: 0.75rem 1.25rem;
   border: none;
@@ -133,35 +188,100 @@ body .modal .modal-content .timer-container button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-body .modal .modal-content .timer-container button:disabled {
+.modal .modal-content .timer-container button:disabled {
   background-color: #e0e0e0;
   cursor: not-allowed;
 }
-body .modal .modal-content .timer-container button:hover:not(:disabled) {
-  background-color: rgb(35.7, 79.05, 56.95);
+.modal .modal-content .timer-container button:hover:not(:disabled) {
+  background-color: #28543d;
   transform: translateY(-0.125rem);
 }
-body .modal .modal-content .timer-container .timer-history {
+.modal .modal-content .timer-container .timer-history {
   margin-top: 1.25rem;
   padding: 1rem;
-  border-top: 0.0625rem solid #4cd68f;
+  border-top: 1px solid #2f905e;
 }
-body .modal .modal-content .timer-container .timer-history .history-table {
+.modal .modal-content .timer-container .timer-history .history-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.625rem;
 }
-body .modal .modal-content .timer-container .timer-history .history-table th, body .modal .modal-content .timer-container .timer-history .history-table td {
+.modal .modal-content .timer-container .timer-history .history-table th, .modal .modal-content .timer-container .timer-history .history-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 0.0625rem solid #4cd68f;
+  border-bottom: 1px solid #2f905e;
 }
-body .modal .modal-content .timer-container .timer-history .history-table th {
+.modal .modal-content .timer-container .timer-history .history-table th {
   background-color: #E8F6F0;
   font-weight: 600;
 }
-body .modal .modal-content .timer-container .timer-history .history-table tr:hover {
-  background-color: rgb(102.85, 220.15, 159.8);
+.modal .modal-content .timer-container .timer-history .history-table tr:hover {
+  background-color: #62eaa3;
+}
+
+.qr-generator-container {
+  padding: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid #2f905e;
+}
+.qr-generator-container .input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qr-generator-container .input-group .qr-input {
+  flex: 1;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #2f905e;
+  border-radius: 4px;
+}
+.qr-generator-container .input-group .qr-format {
+  padding: 8px;
+  border: 1px solid #2f905e;
+  border-radius: 4px;
+}
+.qr-generator-container .input-group .generate-button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.qr-generator-container .input-group .generate-button:hover {
+  background-color: #0056b3;
+}
+.qr-generator-container .qr-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.qr-generator-container .qr-output img, .qr-generator-container .qr-output svg {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+.qr-generator-container .qr-output .download-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 5px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.qr-generator-container .qr-output .download-button:hover {
+  background-color: #218838;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  color: #3C4A3E;
+  background-color: #E8F6F0;
+  font-size: 16px;
 }
 
 /*# sourceMappingURL=style.css.map */
