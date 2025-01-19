@@ -1,5 +1,56 @@
+:root {
+  --primary-color: #2A5D43;
+  --secondary-color: #E8F6F0;
+  --text-color: #3C4A3E;
+  --accent-color: #4cd68f;
+  --border-color: #2f905e;
+}
+
+.modal .modal-content div.theme-picker-container {
+  padding: 1rem;
+}
+.modal .modal-content div.theme-picker-container .predefined-palettes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.modal .modal-content div.theme-picker-container .predefined-palettes .palette-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.modal .modal-content div.theme-picker-container .predefined-palettes .palette-button:hover {
+  transform: scale(1.1);
+}
+.modal .modal-content div.theme-picker-container .custom-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal .modal-content div.theme-picker-container .custom-picker input[type=color] {
+  width: 100px;
+  height: 40px;
+  padding: 0 5px;
+}
+
+.theme-button {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+.theme-button:hover {
+  color: var(--accent-color);
+}
+
 header {
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   color: white;
   height: 4rem;
   display: flex;
@@ -18,7 +69,7 @@ main #home .tool-button {
   display: flex;
   justify-content: space-between;
   width: 90%;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin: 0.625rem;
@@ -36,11 +87,11 @@ main #home .tool-button:hover {
 }
 main #home .tool-button i {
   font-size: 1.5rem;
-  color: #2A5D43;
+  color: var(--primary-color);
 }
 
 footer {
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   color: white;
   text-align: center;
   padding: 0.75rem 0;
@@ -92,7 +143,7 @@ footer {
 .modal .modal-header .close-button {
   cursor: pointer;
   padding: 0.375rem;
-  color: #3C4A3E;
+  color: var(--text-color);
   transition: all 0.3s ease;
 }
 .modal .modal-header .close-button:hover {
@@ -101,7 +152,7 @@ footer {
 }
 .modal .modal-header h2 {
   margin: 0;
-  color: #3C4A3E;
+  color: var(--text-color);
   font-size: 1.5rem;
 }
 .modal .modal-content {
@@ -151,7 +202,7 @@ footer {
   width: 80%;
 }
 #auth-panel div #auth-submit-btn {
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -163,7 +214,7 @@ footer {
   transition: background-color 0.3s ease;
 }
 #auth-panel div #auth-submit-btn:hover {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
 }
 #auth-panel div #auth-submit-btn i {
   color: #ffffff;
@@ -176,7 +227,7 @@ footer {
 .converter .unit-converter {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .converter .unit-converter div.row-flex {
   flex-direction: row;
@@ -187,7 +238,7 @@ footer {
   margin-right: 0.5rem;
 }
 .converter .unit-converter div.row-flex i {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -232,7 +283,7 @@ footer {
   justify-content: space-around;
 }
 .modal .modal-content div .tabs #tab-overview, .modal .modal-content div .tabs #tab-expenses, .modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-overview, .modal .modal-content button .tabs #tab-expenses, .modal .modal-content button .tabs #tab-wishlist {
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -247,16 +298,16 @@ footer {
   font-size: 20px;
 }
 .modal .modal-content div .tabs #tab-expenses, .modal .modal-content button .tabs #tab-expenses {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
 }
 .modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-wishlist {
-  background-color: #4cd68f;
+  background-color: var(--accent-color);
 }
 .modal .modal-content div #overview-panel .input-group, .modal .modal-content button #overview-panel .input-group {
   align-items: center;
 }
 .modal .modal-content div #overview-panel .input-group button#save-income, .modal .modal-content button #overview-panel .input-group button#save-income {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -269,7 +320,7 @@ footer {
 .modal .modal-content div #overview-panel .backup-controls, .modal .modal-content button #overview-panel .backup-controls {
   padding: 0.5rem;
   margin-top: 1rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .modal .modal-content div #overview-panel .backup-controls div.row-flex, .modal .modal-content button #overview-panel .backup-controls div.row-flex {
   flex-direction: row;
@@ -277,7 +328,7 @@ footer {
   align-items: center;
 }
 .modal .modal-content div #overview-panel .backup-controls div.row-flex i, .modal .modal-content button #overview-panel .backup-controls div.row-flex i {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -290,7 +341,7 @@ footer {
 .modal .modal-content div #expenses-panel #expenses-list .expense-item, .modal .modal-content button #expenses-panel #expenses-list .expense-item {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .modal .modal-content div #expenses-panel #expenses-list .expense-item button, .modal .modal-content button #expenses-panel #expenses-list .expense-item button {
   width: fit-content;
@@ -298,12 +349,12 @@ footer {
 .modal .modal-content div #wishlist-panel #wishlist-form, .modal .modal-content button #wishlist-panel #wishlist-form {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item button, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item button {
   width: fit-content;
@@ -316,7 +367,7 @@ footer {
 .modal .modal-content .timer-container .timer-display {
   font-size: 3rem;
   margin: 1.25rem 0;
-  color: #3C4A3E;
+  color: var(--text-color);
   font-weight: 600;
 }
 .modal .modal-content .timer-container button {
@@ -324,7 +375,7 @@ footer {
   padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 8px;
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -334,13 +385,13 @@ footer {
   cursor: not-allowed;
 }
 .modal .modal-content .timer-container button:hover:not(:disabled) {
-  background-color: rgb(35.7, 79.05, 56.95);
+  background-color: var(--secondary-color);
   transform: translateY(-0.125rem);
 }
 .modal .modal-content .timer-container .timer-history {
   margin-top: 1.25rem;
   padding: 1rem;
-  border-top: 1px solid #2f905e;
+  border-top: 1px solid var(--border-color);
 }
 .modal .modal-content .timer-container .timer-history .history-table {
   width: 100%;
@@ -350,21 +401,21 @@ footer {
 .modal .modal-content .timer-container .timer-history .history-table th, .modal .modal-content .timer-container .timer-history .history-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid #2f905e;
+  border-bottom: 1px solid var(--border-color);
 }
 .modal .modal-content .timer-container .timer-history .history-table th {
-  background-color: #E8F6F0;
+  background-color: var(--secondary-color);
   font-weight: 600;
 }
 .modal .modal-content .timer-container .timer-history .history-table tr:hover {
-  background-color: rgb(102.85, 220.15, 159.8);
+  background-color: var(--accent-color);
 }
 
 .qr-generator-container {
   padding: 1rem;
   max-width: 500px;
   margin: 0 auto;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
 }
 .qr-generator-container .input-group {
   display: flex;
@@ -375,24 +426,24 @@ footer {
   flex: 1;
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 .qr-generator-container .input-group .qr-format {
   padding: 8px;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 .qr-generator-container .input-group .generate-button {
   padding: 0.5rem 1rem;
-  background-color: #2A5D43;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 .qr-generator-container .input-group .generate-button:hover {
-  background-color: #4cd68f;
+  background-color: var(--accent-color);
 }
 .qr-generator-container .qr-output {
   display: flex;
@@ -402,7 +453,7 @@ footer {
 }
 .qr-generator-container .qr-output img, .qr-generator-container .qr-output svg {
   padding: 1rem;
-  border: 1px solid #2f905e;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   max-width: 200px;
   margin-bottom: 10px;
@@ -423,8 +474,8 @@ footer {
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  color: #3C4A3E;
-  background-color: #E8F6F0;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
   font-size: 16px;
 }
 

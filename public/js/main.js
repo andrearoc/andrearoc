@@ -1,5 +1,5 @@
 // Import dei moduli
-import HCL from './modules/hourCalculator.js';
+import TEMA from './modules/theme.js'
 import MDL from './modules/modal.js';
 import AUTH_PANEL from './modules/authPanel.js';
 import { initializeTools } from './modules/tools.js';
@@ -16,6 +16,9 @@ const initializeApp = () => {
 
     // Inizializza gli event listeners
     setupEventListeners();
+
+    // Inizializza il tem
+    TEMA.init();
 };
 
 // Callback per l'autenticazione riuscita

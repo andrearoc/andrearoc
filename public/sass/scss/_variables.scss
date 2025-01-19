@@ -1,26 +1,20 @@
-@use 'sass:color';
+// Definizione variabili CSS root
+:root {
+  --primary-color: #2A5D43;    // Verde pino (default)
+  --secondary-color: #E8F6F0;  // Verde menta chiaro
+  --text-color: #3C4A3E;       // Verde scuro neutro
+  --accent-color: #4cd68f;     // Pesca chiaro tenue
+  --border-color: #2f905e;
+}
 
-// Colori principali
-$primary-color: #2A5D43;  // Verde pino
-$secondary-color: #E8F6F0; // Verde menta chiaro
-$text-color: #3C4A3E;      // Verde scuro neutro
-$accent-color: #4cd68f;    // Pesca chiaro tenue
-$border-color: 1px solid #2f905e;
+// Usa le variabili CSS invece delle variabili SASS
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$text-color: var(--text-color);
+$accent-color: var(--accent-color);
+$border-color: 1px solid var(--border-color);
 
-// Versioni lighten e darken
-$primary-color-light: color.scale($primary-color, $lightness: 15%);
-$primary-color-dark: color.scale($primary-color, $lightness: -15%);
-
-$secondary-color-light: color.scale($secondary-color, $lightness: 15%);
-$secondary-color-dark: color.scale($secondary-color, $lightness: -15%);
-
-$text-color-light: color.scale($text-color, $lightness: 15%);
-$text-color-dark: color.scale($text-color, $lightness: -15%);
-
-$accent-color-light: color.scale($accent-color, $lightness: 15%);
-$accent-color-dark: color.scale($accent-color, $lightness: -15%);
-
-// Variabili aggiuntive
+// Le altre variabili che non cambiano con il tema possono rimanere come sono
 $font-size-base: 16px;
 $border-radius: 8px;
 $header-height: 4rem;

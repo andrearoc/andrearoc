@@ -29,7 +29,7 @@
 				}
 
 				&:hover:not(:disabled) {
-					background-color: $primary-color-dark;
+					background-color: $secondary-color;
 					transform: translateY(-0.125rem);
 				}
 			}
@@ -56,7 +56,7 @@
 					}
 
 					tr:hover {
-						background-color: $accent-color-light;
+						background-color: $accent-color;
 					}
 				}
 			}
