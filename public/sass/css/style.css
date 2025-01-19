@@ -68,6 +68,8 @@ footer {
   position: fixed;
   top: 50%;
   left: 50%;
+  overflow-y: scroll;
+  height: 80%;
   transform: translate(-50%, -50%) scale(0.7);
   background-color: white;
   padding: 1.5rem;
@@ -166,6 +168,35 @@ footer {
 #auth-panel div #auth-submit-btn i {
   color: #ffffff;
   font-size: 20px;
+}
+
+.summary-item {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.percentage {
+  color: #666;
+  font-size: 0.9em;
+  margin-left: 0.5rem;
+}
+
+.category-item {
+  padding: 0.3rem 0;
+}
+
+.wishlist-available {
+  padding: 0.5rem;
+  background: #f5f5f5;
+  margin: 0.3rem 0;
+  border-radius: 4px;
+}
+
+.no-items {
+  color: #666;
+  font-style: italic;
+  padding: 0.5rem;
 }
 
 .modal .modal-content .timer-container {
