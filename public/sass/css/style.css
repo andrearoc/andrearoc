@@ -267,6 +267,11 @@ footer {
 .modal .modal-content div #expenses-panel #expenses-list .expense-item button, .modal .modal-content button #expenses-panel #expenses-list .expense-item button {
   width: fit-content;
 }
+.modal .modal-content div #wishlist-panel #wishlist-form, .modal .modal-content button #wishlist-panel #wishlist-form {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #2f905e;
+}
 .modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
