@@ -8,6 +8,20 @@ import { DOC } from './documents.js';
 
 import MDL from './modal.js';
 
+const CATEGORY_ICONS = {
+    'casa': { icon: 'fa-house', color: '#4CAF50' },
+    'alimentari': { icon: 'fa-cart-shopping', color: '#2196F3' },
+    'trasporti': { icon: 'fa-car', color: '#FF9800' },
+    'salute': { icon: 'fa-pills', color: '#E91E63' },
+    'svago': { icon: 'fa-gamepad', color: '#9C27B0' },
+    'pizza': { icon: 'fa-pizza-slice', color: '#F44336' },
+    'sushi': { icon: 'fa-fish', color: '#00BCD4' },
+    'benzina': { icon: 'fa-gas-pump', color: '#795548' },
+    'ristorante': { icon: 'fa-utensils', color: '#607D8B' },
+    'viaggi': { icon: 'fa-plane', color: '#3F51B5' },
+    'altro': { icon: 'fa-thumbtack', color: '#9E9E9E' }
+};
+
 export const initializeTools = {
     timeTracker: () => {
         const content = HCL.createInterface();
@@ -124,7 +138,7 @@ export const initializeTools = {
             <div id="overview-panel" class="panel">
                 <div class="input-group">
                     <input type="number" id="monthly-income" placeholder="Reddito Mensile">
-                    <button id="save-income">Salva</button>
+                    <button id="save-income"><i class="fa-solid fa-floppy-disk"></i></button>
                 </div>
                 <div id="monthly-summary">
                     <h3>Riepilogo Mensile</h3>
@@ -152,11 +166,26 @@ export const initializeTools = {
             <div id="expenses-panel" class="panel" style="display: none">
                 <form id="expense-form">
                     <input type="number" id="expense-amount" placeholder="Importo" required>
-                    <select id="expense-category" required>
-                        ${Object.entries(EXPENSE_CATEGORIES).map(([key, value]) =>
-                            `<option value="${value}">${key}</option>`
-                        ).join('')}
-                    </select>
+                    <div class="custom-select-wrapper">
+                        <div class="custom-select" id="custom-category-select">
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <span>Seleziona categoria</span>
+                        </div>
+                        <div class="custom-select-options">
+                        ${Object.entries(EXPENSE_CATEGORIES).map(([key, value]) => {
+                            const categoryKey = value.split(' ')[0].toLowerCase(); // Prendiamo solo la parte testuale, non l'emoji
+                            const iconData = CATEGORY_ICONS[categoryKey] || CATEGORY_ICONS['altro'];
+
+                            return `
+                                <div class="custom-select-option" data-value="${value}" data-key="${key}">
+                                    <i class="fa-solid ${iconData.icon} category-icon" style="color: ${iconData.color}"></i>
+                                    <span>${key}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                        </div>
+                        <input type="hidden" id="expense-category" required>
+                    </div>
                     <input type="text" id="expense-description" placeholder="Descrizione">
                     <input type="date" id="expense-date" required>
                     <button type="submit">Aggiungi Spesa</button>
@@ -181,6 +210,36 @@ export const initializeTools = {
         `;
 
         MDL.open('Gestione Spese e Budget', content);
+
+
+        // Gestione del custom select
+        const customSelect = document.getElementById('custom-category-select');
+        const optionsContainer = customSelect.nextElementSibling;
+        const hiddenInput = document.getElementById('expense-category');
+
+        customSelect.addEventListener('click', () => {
+            optionsContainer.style.display = optionsContainer.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                optionsContainer.style.display = 'none';
+            }
+        });
+
+        optionsContainer.querySelectorAll('.custom-select-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.dataset.value;
+                const key = option.dataset.key;
+                hiddenInput.value = value;
+                customSelect.innerHTML = `
+                    <i class="fa-solid ${CATEGORY_ICONS[key].icon} category-icon" style="color: ${CATEGORY_ICONS[key].color}"></i>
+                    <span>${key}</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                `;
+                optionsContainer.style.display = 'none';
+            });
+        });
 
         // Gestione tab
         document.querySelectorAll('.tab').forEach(tab => {
@@ -280,6 +339,26 @@ export const initializeTools = {
                 .filter(item => item.estimatedPrice <= monthlyData.savings)
                 .sort((a, b) => a.estimatedPrice - b.estimatedPrice);
 
+            // Prepara la parte delle spese per categoria
+            const categoryExpenses = Object.entries(monthlyData.expenses)
+                .filter(([_, amount]) => amount > 0)
+                .map(([category, amount]) => {
+                    const categoryKey = category.split(' ')[0].toLowerCase();
+                    const iconData = CATEGORY_ICONS[categoryKey] || CATEGORY_ICONS['altro'];
+                    const percentage = (amount/monthlyData.totalExpenses*100).toFixed(1);
+
+                    return `
+                        <div class="category-item">
+                            <span>
+                                <i class="fa-solid ${iconData.icon} category-icon" style="color: ${iconData.color}"></i>
+                                ${category}
+                            </span>
+                            <span>${amount.toFixed(2)}€</span>
+                            <span class="percentage">(${percentage}%)</span>
+                        </div>
+                    `;
+                }).join('');
+
             summaryContent.innerHTML = `
                 <div class="summary-item">
                     <strong>Reddito Mensile:</strong> ${monthlyData.income.toFixed(2)}€
@@ -291,22 +370,18 @@ export const initializeTools = {
                 <div class="summary-item">
                     <strong>Risparmi:</strong> ${monthlyData.savings.toFixed(2)}€
                 </div>
+
                 <h4>Spese per Categoria:</h4>
-                ${Object.entries(monthlyData.expenses)
-                    .filter(([_, amount]) => amount > 0) // Mostra solo categorie con spese
-                    .map(([category, amount]) => `
-                        <div class="category-item">
-                            <span>${category}:</span> ${amount.toFixed(2)}€
-                            <span class="percentage">(${(amount/monthlyData.totalExpenses*100).toFixed(1)}%)</span>
-                        </div>
-                    `).join('')}
+                <div class="category-expenses">
+                    ${categoryExpenses}
+                </div>
 
                 ${monthlyData.savings > 0 ? `
                     <h4 class="mt-4">Elementi Wishlist Acquistabili:</h4>
                     ${affordableItems.length > 0 ?
                         affordableItems.map(item => `
                             <div class="wishlist-available">
-                                <span>${item.name} :</span> ${item.estimatedPrice.toFixed(2)}€
+                                <span>${item.name}:</span> ${item.estimatedPrice.toFixed(2)}€
                                 <span class="percentage">(${(item.estimatedPrice/monthlyData.savings*100).toFixed(1)}% dei risparmi)</span>
                             </div>
                         `).join('')
@@ -326,15 +401,25 @@ export const initializeTools = {
 
             container.innerHTML = expenseManager.expenses
                 .sort((a, b) => b.date - a.date)
-                .map(exp => `
-                    <div class="expense-item" data-id="${exp.id}">
-                        <span class="amount">${exp.amount.toFixed(2)}€</span>
-                        <span class="category">${exp.category}</span>
-                        <span class="description">${exp.description}</span>
-                        <span class="date">${new Date(exp.date).toLocaleDateString()}</span>
-                        <button class="delete-expense">❌</button>
-                    </div>
-                `).join('');
+                .map(exp => {
+                    const categoryKey = exp.category.split(' ')[0].toLowerCase();
+                    const iconData = CATEGORY_ICONS[categoryKey] || CATEGORY_ICONS['altro'];
+
+                    return `
+                        <div class="expense-item" data-id="${exp.id}">
+                            <span class="amount">${exp.amount.toFixed(2)}€</span>
+                            <span class="category">
+                                <i class="fa-solid ${iconData.icon} category-icon" style="color: ${iconData.color}"></i>
+                                ${exp.category}
+                            </span>
+                            <span class="description">${exp.description}</span>
+                            <span class="date">${new Date(exp.date).toLocaleDateString()}</span>
+                            <button class="delete-expense">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
 
             // Gestione eliminazione spese
             container.querySelectorAll('.delete-expense').forEach(btn => {

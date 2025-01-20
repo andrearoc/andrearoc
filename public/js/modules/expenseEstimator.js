@@ -6,7 +6,12 @@ export const EXPENSE_CATEGORIES = {
     TRASPORTI: 'trasporti',
     SALUTE: 'salute',
     SVAGO: 'svago',
-    ALTRO: 'altro'
+    PIZZA:'pizza',
+    SUSHI:'sushi',
+    BENZINA:'benzina',
+    RISTORANTE:'ristorante',
+    VIAGGI:'viaggi',
+    ALTRO:'altro'
 };
 
 export const PRIORITY_LEVELS = {

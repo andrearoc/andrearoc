@@ -23,7 +23,7 @@ const initializeApp = () => {
 
 // Callback per l'autenticazione riuscita
 const onAuthenticationSuccess = () => {
-    document.getElementById('home').style.display = 'block';
+    document.getElementById('home').style.display = 'flex';
 };
 
 // Setup degli event listeners

@@ -14,42 +14,45 @@
 <body>
     <header>
         <h1>DrinApp</h1>
-        <i id="editTheme" class="fas fa-palette"></i>
     </header>
     <main>
         <div id="home" style="display: none;"> <!-- Hidden by default until authentication -->
-            <button class="tool-button" data-tool="timeTracker">
-                <i class="fas fa-clock"></i>
-                <span>Timer Lavoro</span>
-            </button>
-            <button class="tool-button" data-tool="calendar">
-                <i class="fas fa-calendar-alt"></i>
+            <div class="tool-group">
+                <i class="fas fa-clock tool-button" data-tool="timeTracker"></i>
+                <span>Timer</span>
+            </div>
+            <div class="tool-group">
+                <i class="fas fa-calendar-alt tool-button" data-tool="calendar"></i>
                 <span>Calendario</span>
-            </button>
-            <button class="tool-button" data-tool="documents">
-                <i class="fas fa-id-card"></i>
-                <span>Gestione Documenti</span>
-            </button>
-            <button class="tool-button" data-tool="qrGenerator">
-                <i class="fas fa-qrcode"></i>
-                <span>Genera Codice QR</span>
-            </button>
-            <button class="tool-button" data-tool="unitConverter">
-                <i class="fas fa-exchange-alt"></i>
-                <span>Converitore di Unità</span>
-            </button>
-            <button class="tool-button" data-tool="passwordGenerator">
-                <i class="fas fa-key"></i>
-                <span>Generatore di Password</span>
-            </button>
-            <button class="tool-button" data-tool="expenseEstimator">
-                <i class="fas fa-wallet"></i>
-                <span>Stime di Spesa e Budget</span>
-            </button>
+            </div>
+            <div class="tool-group">
+                <i class="fas fa-id-card tool-button" data-tool="documents"></i>
+                <span>Documenti</span>
+            </div>
+            <div class="tool-group">
+                <i class="fas fa-qrcode tool-button" data-tool="qrGenerator"></i>
+                <span>QR</span>
+            </div>
+            <div class="tool-group">
+                <i class="fas fa-exchange-alt tool-button" data-tool="unitConverter"></i>
+                <span>Converitore</span>
+            </div>
+            <div class="tool-group">
+                <i class="fas fa-key tool-button" data-tool="passwordGenerator"></i>
+                <span>Password</span>
+            </div>
+            <div class="tool-group">
+                <i class="fa-solid fa-cat tool-button" data-tool="expenseEstimator"></i>
+                <span>Famiglia</span>
+            </div>
         </div>
     </main>
     <footer>
         <p>&copy; 2025 Copyright by Drin</p>
+        <div class="setting-group">
+            <i id="editTheme" class="fas fa-palette"></i>
+            <i id="setting" class="fa-solid fa-gear"></i>
+        </div>
     </footer>
 </body>
 </html>

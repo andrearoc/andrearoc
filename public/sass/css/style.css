@@ -1,9 +1,18 @@
 :root {
   --primary-color: #2A5D43;
   --secondary-color: #E8F6F0;
+  --third-color: #449f70;
   --text-color: #3C4A3E;
   --accent-color: #4cd68f;
   --border-color: #2f905e;
+  --select-bg: #ffffff;
+  --select-hover: #f5f5f5;
+  --icon-size: 1.2rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --shadow-dropdown: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal .modal-content div.theme-picker-container {
@@ -55,7 +64,7 @@ header {
   height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.08);
 }
 
@@ -65,32 +74,50 @@ main {
   flex-direction: column;
   align-items: center;
 }
-main #home .tool-button {
+main #home {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: 90%;
+}
+main #home .tool-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.625rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+main #home .tool-group:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 1.5rem rgba(255, 126, 103, 0.2);
+}
+main #home .tool-group i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+main #home .tool-group i.tool-button {
+  display: flex;
+  flex-direction: column;
+  width: 0.7rem;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 1rem;
   padding: 1rem 1.5rem;
   margin: 0.625rem;
   cursor: pointer;
-  display: flex;
   align-items: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
   background-color: white;
   box-shadow: 0 0.25rem 1rem rgba(255, 126, 103, 0.1);
 }
-main #home .tool-button:hover {
-  transform: translateY(-0.125rem);
-  box-shadow: 0 0.5rem 1.5rem rgba(255, 126, 103, 0.2);
-}
-main #home .tool-button i {
-  font-size: 1.5rem;
-  color: var(--primary-color);
+main #home .tool-group span {
+  font-size: 0.75rem;
 }
 
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--primary-color);
   color: white;
   text-align: center;
@@ -98,6 +125,16 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+footer p {
+  font-size: 0.75rem;
+}
+footer .setting-group {
+  display: flex;
+  justify-content: space-between;
+  right: 1rem;
+  position: absolute;
+  width: 3rem;
 }
 
 #modal-backdrop {
@@ -139,6 +176,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
 }
 .modal .modal-header .close-button {
   cursor: pointer;
@@ -151,9 +189,9 @@ footer {
   transform: rotate(90deg);
 }
 .modal .modal-header h2 {
+  font-size: 0.95rem;
   margin: 0;
   color: var(--text-color);
-  font-size: 1.5rem;
 }
 .modal .modal-content {
   min-width: 18.75rem;
@@ -219,6 +257,14 @@ footer {
 #auth-panel div #auth-submit-btn i {
   color: #ffffff;
   font-size: 20px;
+}
+
+.modal .modal-content #generate-password {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .documents-container {
@@ -476,7 +522,7 @@ footer {
   font-size: 20px;
 }
 .modal .modal-content div .tabs #tab-expenses, .modal .modal-content button .tabs #tab-expenses {
-  background-color: var(--secondary-color);
+  background-color: var(--third-color);
 }
 .modal .modal-content div .tabs #tab-wishlist, .modal .modal-content button .tabs #tab-wishlist {
   background-color: var(--accent-color);
@@ -494,6 +540,20 @@ footer {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.modal .modal-content div #overview-panel #monthly-summary .category-item, .modal .modal-content button #overview-panel #monthly-summary .category-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--secondary-color);
+}
+.modal .modal-content div #overview-panel #monthly-summary .category-item:last-child, .modal .modal-content button #overview-panel #monthly-summary .category-item:last-child {
+  border-bottom: none;
+}
+.modal .modal-content div #overview-panel #monthly-summary .category-item .percentage, .modal .modal-content button #overview-panel #monthly-summary .category-item .percentage {
+  margin-left: auto;
+  color: var(--third-color);
+  font-size: 0.9em;
 }
 .modal .modal-content div #overview-panel .backup-controls, .modal .modal-content button #overview-panel .backup-controls {
   padding: 0.5rem;
@@ -516,18 +576,131 @@ footer {
   align-items: center;
   cursor: pointer;
 }
-.modal .modal-content div #expenses-panel #expenses-list .expense-item, .modal .modal-content button #expenses-panel #expenses-list .expense-item {
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid var(--border-color);
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+  font-size: 16px;
 }
-.modal .modal-content div #expenses-panel #expenses-list .expense-item button, .modal .modal-content button #expenses-panel #expenses-list .expense-item button {
-  width: fit-content;
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select {
+  background: var(--select-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select:hover, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select:hover {
+  border-color: var(--third-color);
+  background-color: var(--secondary-color);
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-options, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-options {
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  left: 0;
+  right: 0;
+  background: var(--select-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  box-shadow: var(--shadow-dropdown);
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar {
+  width: 8px;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar-track, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+  border-radius: 8px;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar-thumb, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-options::-webkit-scrollbar-thumb {
+  background: var(--third-color);
+  border-radius: 8px;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option {
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: all 0.3s ease;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option:hover, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option:hover {
+  background: var(--secondary-color);
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.selected, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.selected {
+  background: var(--third-color);
+  color: var(--select-bg);
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon.animated, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon.animated {
+  transition: transform 0.3s ease;
+}
+.modal .modal-content div #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon.animated:hover, .modal .modal-content button #expenses-panel #expense-form .custom-select-wrapper .custom-select-option.category-icon.animated:hover {
+  transform: scale(1.2);
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item, .modal .modal-content button #expenses-panel #expenses-list .expense-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-sm);
+  background: var(--select-bg);
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .category, .modal .modal-content button #expenses-panel #expenses-list .expense-item .category {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .amount, .modal .modal-content button #expenses-panel #expenses-list .expense-item .amount {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-md);
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .description, .modal .modal-content button #expenses-panel #expenses-list .expense-item .description {
+  flex-grow: 1;
+  margin: 0 var(--spacing-md);
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .date, .modal .modal-content button #expenses-panel #expenses-list .expense-item .date {
+  color: var(--text-color);
+  opacity: 0.8;
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .delete-expense, .modal .modal-content button #expenses-panel #expenses-list .expense-item .delete-expense {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.modal .modal-content div #expenses-panel #expenses-list .expense-item .delete-expense:hover, .modal .modal-content button #expenses-panel #expenses-list .expense-item .delete-expense:hover {
+  opacity: 1;
 }
 .modal .modal-content div #wishlist-panel #wishlist-form, .modal .modal-content button #wishlist-panel #wishlist-form {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border: 1px solid var(--border-color);
+}
+.modal .modal-content div #wishlist-panel #wishlist-items .empty-state, .modal .modal-content button #wishlist-panel #wishlist-items .empty-state {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--text-color);
+  opacity: 0.7;
+  font-style: italic;
 }
 .modal .modal-content div #wishlist-panel #wishlist-items .wishlist-item, .modal .modal-content button #wishlist-panel #wishlist-items .wishlist-item {
   padding: 0.5rem;
@@ -549,8 +722,6 @@ footer {
   font-weight: 600;
 }
 .modal .modal-content .timer-container button {
-  margin: 0.375rem;
-  padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 8px;
   background-color: var(--primary-color);
@@ -593,7 +764,6 @@ footer {
   padding: 1rem;
   max-width: 500px;
   margin: 0 auto;
-  border: 1px solid var(--border-color);
 }
 .qr-generator-container .input-group {
   display: flex;

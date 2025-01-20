@@ -1,6 +1,9 @@
 @use 'variables' as *;
 
 footer {
+	display: flex;
+  align-items: center;
+  justify-content: center;
 	background-color: $primary-color;
 	color: white;
 	text-align: center;
@@ -8,4 +11,16 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+
+	p {
+		font-size: 0.75rem;
+	}
+
+	.setting-group {
+		display: flex;
+		justify-content: space-between;
+	  right: 1rem;
+	  position: absolute;
+	  width: 3rem;
+	}
 }
