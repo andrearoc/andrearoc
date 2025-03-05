@@ -82,21 +82,22 @@ class ExpenseStorageManager extends StorageManager {
 
 	// Salva l'intero stato del expense manager
 	saveState(expenseManager) {
-			return this.save({
-					expenses: expenseManager.expenses,
-					wishlist: expenseManager.wishlist,
-					monthlyIncome: expenseManager.monthlyIncome,
-					monthlyBudget: expenseManager.monthlyBudget,
-					lastUpdate: new Date().toISOString()
-			});
+    return this.save({
+        expenses: expenseManager.expenses,
+        wishlist: expenseManager.wishlist,
+        notes: expenseManager.notes, // Aggiungi note
+        monthlyIncome: expenseManager.monthlyIncome,
+        monthlyBudget: expenseManager.monthlyBudget,
+        lastUpdate: new Date().toISOString()
+    });
 	}
 
-	// Carica lo stato salvato
 	loadState(expenseManager) {
 			const data = this.load();
 			if (data) {
 					expenseManager.expenses = data.expenses;
 					expenseManager.wishlist = data.wishlist;
+					expenseManager.notes = data.notes || []; // Aggiungi caricamento note
 					expenseManager.monthlyIncome = data.monthlyIncome;
 					expenseManager.monthlyBudget = data.monthlyBudget;
 					return true;

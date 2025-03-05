@@ -5,211 +5,217 @@ import { generatePassword } from './passwordGenerator.js';
 import { expenseManager, EXPENSE_CATEGORIES, PRIORITY_LEVELS } from './expenseEstimator.js';
 import HCL from './hourCalculator.js';
 import { DOC } from './documents.js';
+import NOTES from './notes.js';
 
 import MDL from './modal.js';
 
 const CATEGORY_ICONS = {
-    'casa': { icon: 'fa-house', color: '#4CAF50' },
-    'alimentari': { icon: 'fa-cart-shopping', color: '#2196F3' },
-    'trasporti': { icon: 'fa-car', color: '#FF9800' },
-    'salute': { icon: 'fa-pills', color: '#E91E63' },
-    'svago': { icon: 'fa-gamepad', color: '#9C27B0' },
-    'pizza': { icon: 'fa-pizza-slice', color: '#F44336' },
-    'sushi': { icon: 'fa-fish', color: '#00BCD4' },
-    'benzina': { icon: 'fa-gas-pump', color: '#795548' },
-    'ristorante': { icon: 'fa-utensils', color: '#607D8B' },
-    'viaggi': { icon: 'fa-plane', color: '#3F51B5' },
-    'altro': { icon: 'fa-thumbtack', color: '#9E9E9E' }
+	'casa': { icon: 'fa-house', color: '#4CAF50' },
+	'alimentari': { icon: 'fa-cart-shopping', color: '#2196F3' },
+	'trasporti': { icon: 'fa-car', color: '#FF9800' },
+	'salute': { icon: 'fa-pills', color: '#E91E63' },
+	'svago': { icon: 'fa-gamepad', color: '#9C27B0' },
+	'pizza': { icon: 'fa-pizza-slice', color: '#F44336' },
+	'sushi': { icon: 'fa-fish', color: '#00BCD4' },
+	'benzina': { icon: 'fa-gas-pump', color: '#795548' },
+	'ristorante': { icon: 'fa-utensils', color: '#607D8B' },
+	'viaggi': { icon: 'fa-plane', color: '#3F51B5' },
+	'altro': { icon: 'fa-thumbtack', color: '#9E9E9E' }
 };
 
 export const initializeTools = {
+	notes: () => {
+		const content = NOTES.createInterface();
+		MDL.open('Gestione Note', content);
+	},
+
     timeTracker: () => {
-        const content = HCL.createInterface();
-        MDL.open('Time Tracker', content);
+			const content = HCL.createInterface();
+			MDL.open('Time Tracker', content);
     },
 
     calendar: () => {
-        const content = document.createElement('div');
-        content.innerHTML = `<div id="calendar"></div>`;
-        MDL.open('Calendario', content);
-        initializeCalendar();
+			const content = document.createElement('div');
+			content.innerHTML = `<div id="calendar"></div>`;
+			MDL.open('Calendario', content);
+			initializeCalendar();
     },
 
     qrGenerator: () => {
-        const content = createInterface();
-        MDL.open('Generatore di Codici QR', content);
+			const content = createInterface();
+			MDL.open('Generatore di Codici QR', content);
     },
 
     documents: () => {
-        const content = DOC.createInterface();
-        MDL.open('Gestione Documenti', content);
+			const content = DOC.createInterface();
+			MDL.open('Gestione Documenti', content);
     },
 
     unitConverter: () => {
-        const content = document.createElement('div');
-        content.classList.add('converter');
-        content.innerHTML = `
-            <h4><i class="fa-solid fa-ruler-horizontal"></i></h4>
-            <div class="unit-converter">
-                <input type="number" id="unit-input" placeholder="Valore" class="w-full mb-2">
-                <select id="unit-from" class="w-full mb-2">
-                    <optgroup label="Lunghezza">
-                        <option value="meters">Metri</option>
-                        <option value="centimeters">Centimetri</option>
-                        <option value="kilometers">Chilometri</option>
-                        <option value="miles">Miglia</option>
-                    </optgroup>
-                    <optgroup label="Volume">
-                        <option value="liters">Litri</option>
-                        <option value="milliliters">Millilitri</option>
-                        <option value="centiliters">Centilitri</option>
-                        <option value="deciliters">Decilitri</option>
-                        <option value="hectoliters">Ettolitri</option>
-                    </optgroup>
-                </select>
-                <select id="unit-to" class="w-full mb-2">
-                    <optgroup label="Lunghezza">
-                        <option value="centimeters">Centimetri</option>
-                        <option value="meters">Metri</option>
-                        <option value="kilometers">Chilometri</option>
-                        <option value="miles">Miglia</option>
-                    </optgroup>
-                    <optgroup label="Volume">
-                        <option value="milliliters">Millilitri</option>
-                        <option value="liters">Litri</option>
-                        <option value="centiliters">Centilitri</option>
-                        <option value="deciliters">Decilitri</option>
-                        <option value="hectoliters">Ettolitri</option>
-                    </optgroup>
-                </select>
-                <div class="row-flex">
-                    <span>Converti</span><i id="convert-unit" class="fa-solid fa-rotate"></i>
-                </div>
-            </div>
-            <div id="unit-output" class="mt-4"></div>
-        `;
-        MDL.open('Convertitore di Unità', content);
+			const content = document.createElement('div');
+			content.classList.add('converter');
+			content.innerHTML = `
+				<h4><i class="fa-solid fa-ruler-horizontal"></i></h4>
+				<div class="unit-converter">
+					<input type="number" id="unit-input" placeholder="Valore" class="w-full mb-2">
+					<select id="unit-from" class="w-full mb-2">
+						<optgroup label="Lunghezza">
+							<option value="meters">Metri</option>
+							<option value="centimeters">Centimetri</option>
+							<option value="kilometers">Chilometri</option>
+							<option value="miles">Miglia</option>
+						</optgroup>
+						<optgroup label="Volume">
+							<option value="liters">Litri</option>
+							<option value="milliliters">Millilitri</option>
+							<option value="centiliters">Centilitri</option>
+							<option value="deciliters">Decilitri</option>
+							<option value="hectoliters">Ettolitri</option>
+						</optgroup>
+					</select>
+					<select id="unit-to" class="w-full mb-2">
+						<optgroup label="Lunghezza">
+							<option value="centimeters">Centimetri</option>
+							<option value="meters">Metri</option>
+							<option value="kilometers">Chilometri</option>
+							<option value="miles">Miglia</option>
+						</optgroup>
+						<optgroup label="Volume">
+							<option value="milliliters">Millilitri</option>
+							<option value="liters">Litri</option>
+							<option value="centiliters">Centilitri</option>
+							<option value="deciliters">Decilitri</option>
+							<option value="hectoliters">Ettolitri</option>
+						</optgroup>
+					</select>
+					<div class="row-flex">
+						<span>Converti</span><i id="convert-unit" class="fa-solid fa-rotate"></i>
+					</div>
+				</div>
+				<div id="unit-output" class="mt-4"></div>
+			`;
+			MDL.open('Convertitore di Unità', content);
 
-        document.getElementById('convert-unit').addEventListener('click', () => {
-            try {
-                const value = parseFloat(document.getElementById('unit-input').value);
-                const fromUnit = document.getElementById('unit-from').value;
-                const toUnit = document.getElementById('unit-to').value;
+			document.getElementById('convert-unit').addEventListener('click', () => {
+				try {
+					const value = parseFloat(document.getElementById('unit-input').value);
+					const fromUnit = document.getElementById('unit-from').value;
+					const toUnit = document.getElementById('unit-to').value;
 
-                if (isNaN(value)) {
-                    throw new Error('Inserire un valore numerico valido');
-                }
+					if (isNaN(value)) {
+						throw new Error('Inserire un valore numerico valido');
+					}
 
-                const result = convertUnit(value, fromUnit, toUnit);
-                document.getElementById('unit-output').innerHTML =
-                    `<div class="success">Risultato: ${result.toFixed(2)} ${toUnit}</div>`;
-            } catch (error) {
-                document.getElementById('unit-output').innerHTML =
-                    `<div class="error">Errore: ${error.message}</div>`;
-            }
-        });
+					const result = convertUnit(value, fromUnit, toUnit);
+					document.getElementById('unit-output').innerHTML =
+						`<div class="success">Risultato: ${result.toFixed(2)} ${toUnit}</div>`;
+				} catch (error) {
+					document.getElementById('unit-output').innerHTML =
+						`<div class="error">Errore: ${error.message}</div>`;
+				}
+			});
     },
 
     passwordGenerator: () => {
-        const content = document.createElement('div');
-        content.innerHTML = `
-            <h4>Inserisci il numero di caratteri desiderato</h4>
-            <input type="number" id="password-length" placeholder="Lunghezza della password" value="12">
-            <button id="generate-password">Genera Password</button>
-            <div id="password-output"></div>
-        `;
-        MDL.open('Generatore di Password Sicure', content);
-        document.getElementById('generate-password').addEventListener('click', () => {
-            const length = parseInt(document.getElementById('password-length').value);
-            const password = generatePassword(length);
-            document.getElementById('password-output').innerText = `Password Generata: ${password}`;
-        });
+			const content = document.createElement('div');
+			content.innerHTML = `
+				<h4>Inserisci il numero di caratteri desiderato</h4>
+				<input type="number" id="password-length" placeholder="Lunghezza della password" value="12">
+				<button id="generate-password">Genera Password</button>
+				<div id="password-output"></div>
+			`;
+			MDL.open('Generatore di Password Sicure', content);
+			document.getElementById('generate-password').addEventListener('click', () => {
+				const length = parseInt(document.getElementById('password-length').value);
+				const password = generatePassword(length);
+				document.getElementById('password-output').innerText = `Password Generata: ${password}`;
+			});
     },
 
     expenseEstimator: () => {
-        const content = document.createElement('div');
-        content.innerHTML = `
-            <div class="tabs">
-                <button id="tab-overview" class="tab active"><i class="fa-solid fa-house"></i></button>
-                <button id="tab-expenses" class="tab"><i class="fa-solid fa-euro-sign"></i></button>
-                <button id="tab-wishlist" class="tab"><i class="fa-solid fa-heart"></i></button>
-            </div>
+			const content = document.createElement('div');
+			content.innerHTML = `
+					<div class="tabs">
+						<button id="tab-overview" class="tab active"><i class="fa-solid fa-house"></i></button>
+						<button id="tab-expenses" class="tab"><i class="fa-solid fa-euro-sign"></i></button>
+						<button id="tab-wishlist" class="tab"><i class="fa-solid fa-heart"></i></button>
+					</div>
 
-            <div id="overview-panel" class="panel">
-                <div class="input-group">
-                    <input type="number" id="monthly-income" placeholder="Reddito Mensile">
-                    <button id="save-income"><i class="fa-solid fa-floppy-disk"></i></button>
-                </div>
-                <div id="monthly-summary">
-                    <h3>Riepilogo Mensile</h3>
-                    <div id="summary-content"></div>
-                </div>
-                <!-- Aggiungi qui i controlli di backup -->
-                <div class="backup-controls">
-                    <div class="row-flex">
-                        <span>Esporta Dati</span><i id="export-data" class="fa-solid fa-file-export"></i>
-                        <input type="file" id="import-data" accept=".json" style="display: none">
-                    </div>
-                    <div class="import-options mb-2">
-                        <select id="import-mode" class="w-full">
-                            <option value="replace">Sostituisci dati esistenti</option>
-                            <option value="merge">Unisci con dati esistenti</option>
-                            <option value="append">Aggiungi in coda</option>
-                        </select>
-                    </div>
-                    <div class="row-flex">
-                        <span>Importa Dati</span><i id="import-trigger" class="fa-solid fa-file-import"></i>
-                    </div>
-                </div>
-            </div>
+					<div id="overview-panel" class="panel">
+						<div class="input-group">
+							<input type="number" id="monthly-income" placeholder="Reddito Mensile">
+							<button id="save-income"><i class="fa-solid fa-floppy-disk"></i></button>
+						</div>
+						<div id="monthly-summary">
+							<h3>Riepilogo Mensile</h3>
+							<div id="summary-content"></div>
+						</div>
+						<!-- Aggiungi qui i controlli di backup -->
+						<div class="backup-controls">
+							<div class="row-flex">
+								<span>Esporta Dati</span><i id="export-data" class="fa-solid fa-file-export"></i>
+								<input type="file" id="import-data" accept=".json" style="display: none">
+							</div>
+							<div class="import-options mb-2">
+								<select id="import-mode" class="w-full">
+									<option value="replace">Sostituisci dati esistenti</option>
+									<option value="merge">Unisci con dati esistenti</option>
+									<option value="append">Aggiungi in coda</option>
+								</select>
+							</div>
+							<div class="row-flex">
+								<span>Importa Dati</span><i id="import-trigger" class="fa-solid fa-file-import"></i>
+							</div>
+						</div>
+					</div>
 
-            <div id="expenses-panel" class="panel" style="display: none">
-                <form id="expense-form">
-                    <input type="number" id="expense-amount" placeholder="Importo" required>
-                    <div class="custom-select-wrapper">
-                        <div class="custom-select" id="custom-category-select">
-                            <i class="fa-solid fa-chevron-down"></i>
-                            <span>Seleziona categoria</span>
-                        </div>
-                        <div class="custom-select-options">
-                        ${Object.entries(EXPENSE_CATEGORIES).map(([key, value]) => {
-                            const categoryKey = value.split(' ')[0].toLowerCase(); // Prendiamo solo la parte testuale, non l'emoji
-                            const iconData = CATEGORY_ICONS[categoryKey] || CATEGORY_ICONS['altro'];
+					<div id="expenses-panel" class="panel" style="display: none">
+						<form id="expense-form">
+							<input type="number" id="expense-amount" placeholder="Importo" required>
+							<div class="custom-select-wrapper">
+								<div class="custom-select" id="custom-category-select">
+									<i class="fa-solid fa-chevron-down"></i>
+									<span>Seleziona categoria</span>
+								</div>
+								<div class="custom-select-options">
+								${Object.entries(EXPENSE_CATEGORIES).map(([key, value]) => {
+									const categoryKey = value.split(' ')[0].toLowerCase(); // Prendiamo solo la parte testuale, non l'emoji
+									const iconData = CATEGORY_ICONS[categoryKey] || CATEGORY_ICONS['altro'];
 
-                            return `
-                                <div class="custom-select-option" data-value="${value}" data-key="${key}">
-                                    <i class="fa-solid ${iconData.icon} category-icon" style="color: ${iconData.color}"></i>
-                                    <span>${key}</span>
-                                </div>
-                            `;
-                        }).join('')}
-                        </div>
-                        <input type="hidden" id="expense-category" required>
-                    </div>
-                    <input type="text" id="expense-description" placeholder="Descrizione">
-                    <input type="date" id="expense-date" required>
-                    <button type="submit">Aggiungi Spesa</button>
-                </form>
-                <div id="expenses-list"></div>
-            </div>
+									return `
+										<div class="custom-select-option" data-value="${value}" data-key="${key}">
+											<i class="fa-solid ${iconData.icon} category-icon" style="color: ${iconData.color}"></i>
+											<span>${key}</span>
+										</div>
+									`;
+								}).join('')}
+							</div>
+							<input type="hidden" id="expense-category" required>
+							</div>
+								<input type="text" id="expense-description" placeholder="Descrizione">
+								<input type="date" id="expense-date" required>
+								<button type="submit">Aggiungi Spesa</button>
+						</form>
+					<div id="expenses-list"></div>
+				</div>
 
-            <div id="wishlist-panel" class="panel" style="display: none">
-                <form id="wishlist-form">
-                    <input type="text" id="wish-name" placeholder="Nome Articolo" required>
-                    <input type="number" id="wish-price" placeholder="Prezzo Stimato" required>
-                    <select id="wish-priority" required>
-                        ${Object.entries(PRIORITY_LEVELS).map(([key, value]) =>
-                            `<option value="${value}">${key}</option>`
-                        ).join('')}
-                    </select>
-                    <textarea id="wish-notes" placeholder="Note"></textarea>
-                    <button type="submit">Aggiungi alla Wishlist</button>
-                </form>
-                <div id="wishlist-items"></div>
-            </div>
-        `;
+				<div id="wishlist-panel" class="panel" style="display: none">
+					<form id="wishlist-form">
+						<input type="text" id="wish-name" placeholder="Nome Articolo" required>
+						<input type="number" id="wish-price" placeholder="Prezzo Stimato" required>
+						<select id="wish-priority" required>
+							${Object.entries(PRIORITY_LEVELS).map(([key, value]) =>
+								`<option value="${value}">${key}</option>`
+							).join('')}
+						</select>
+						<textarea id="wish-notes" placeholder="Note"></textarea>
+						<button type="submit">Aggiungi alla Wishlist</button>
+					</form>
+					<div id="wishlist-items"></div>
+				</div>
+			`;
 
-        MDL.open('Gestione Spese e Budget', content);
+			MDL.open('Gestione Spese e Budget', content);
 
 
         // Gestione del custom select
@@ -218,26 +224,26 @@ export const initializeTools = {
         const hiddenInput = document.getElementById('expense-category');
 
         customSelect.addEventListener('click', () => {
-            optionsContainer.style.display = optionsContainer.style.display === 'none' ? 'block' : 'none';
+					optionsContainer.style.display = optionsContainer.style.display === 'none' ? 'block' : 'none';
         });
 
         document.addEventListener('click', (e) => {
             if (!customSelect.contains(e.target)) {
-                optionsContainer.style.display = 'none';
+							optionsContainer.style.display = 'none';
             }
         });
 
         optionsContainer.querySelectorAll('.custom-select-option').forEach(option => {
             option.addEventListener('click', () => {
-                const value = option.dataset.value;
-                const key = option.dataset.key;
-                hiddenInput.value = value;
-                customSelect.innerHTML = `
-                    <i class="fa-solid ${CATEGORY_ICONS[key].icon} category-icon" style="color: ${CATEGORY_ICONS[key].color}"></i>
-                    <span>${key}</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                `;
-                optionsContainer.style.display = 'none';
+							const value = option.dataset.value;
+							const key = option.dataset.key;
+							hiddenInput.value = value;
+							customSelect.innerHTML = `
+								<i class="fa-solid ${CATEGORY_ICONS[key].icon} category-icon" style="color: ${CATEGORY_ICONS[key].color}"></i>
+								<span>${key}</span>
+								<i class="fa-solid fa-chevron-down"></i>
+							`;
+							optionsContainer.style.display = 'none';
             });
         });
 
@@ -432,37 +438,37 @@ export const initializeTools = {
             });
         }
 
-        function updateWishlist() {
-            const container = document.getElementById('wishlist-items');
-            if (expenseManager.wishlist.length === 0) {
-                container.innerHTML = '<div class="empty-state">La wishlist è vuota</div>';
-                return;
-            }
+				function updateWishlist() {
+					const container = document.getElementById('wishlist-items');
+					if (!expenseManager.wishlist || expenseManager.wishlist.length === 0) {
+							container.innerHTML = '<div class="empty-state">La wishlist è vuota</div>';
+							return;
+					}
 
-            container.innerHTML = expenseManager.wishlist
-                .sort((a, b) => b.priority - a.priority)
-                .map(item => `
-                    <div class="wishlist-item" data-id="${item.id}">
-                        <span class="name">${item.name}</span>
-                        <span class="price">${item.estimatedPrice.toFixed(2)}€</span>
-                        <span class="priority">Priorità: ${
-                            Object.entries(PRIORITY_LEVELS)
-                                .find(([_, value]) => value === item.priority)[0]
-                        }</span>
-                        <p class="notes">${item.notes}</p>
-                        <button class="delete-wish">❌</button>
-                    </div>
-                `).join('');
+					container.innerHTML = expenseManager.wishlist
+							.sort((a, b) => b.priority - a.priority)
+							.map(item => `
+									<div class="wishlist-item" data-id="${item.id}">
+											<span class="name">${item.name}</span>
+											<span class="price">${item.estimatedPrice.toFixed(2)}€</span>
+											<span class="priority">Priorità: ${
+													Object.entries(PRIORITY_LEVELS)
+															.find(([_, value]) => value === item.priority)?.[0] || 'Bassa'
+											}</span>
+											<p class="notes">${item.notes || ''}</p>
+											<button class="delete-wish">❌</button>
+									</div>
+							`).join('');
 
-            // Gestione eliminazione wishlist
-            container.querySelectorAll('.delete-wish').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(e.target.closest('.wishlist-item').dataset.id);
-                    expenseManager.removeWishlistItem(id);
-                    updateWishlist();
-                });
-            });
-        }
+					// Gestione eliminazione wishlist
+					container.querySelectorAll('.delete-wish').forEach(btn => {
+							btn.addEventListener('click', (e) => {
+									const id = parseInt(e.target.closest('.wishlist-item').dataset.id);
+									expenseManager.removeWishlistItem(id);
+									updateWishlist();
+							});
+					});
+				}
 
         // Inizializzazione
         updateExpensesList();

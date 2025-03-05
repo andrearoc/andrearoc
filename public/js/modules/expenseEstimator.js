@@ -24,6 +24,7 @@ class ExpenseManager {
     constructor() {
         this.expenses = [];
         this.wishlist = [];
+				this.notes = [];
         this.monthlyIncome = 0;
         this.monthlyBudget = 0;
         storageManager.loadState(this);
@@ -110,6 +111,26 @@ class ExpenseManager {
         return this.monthlyIncome - monthlyExpenses;
     }
 
+		// Metodo per aggiungere una nota
+		addNote(title, content, category, date = new Date()) {
+			const note = {
+					id: Date.now(),
+					title,
+					content,
+					category,
+					date: new Date(date)
+			};
+			this.notes.push(note);
+			storageManager.saveState(this);
+			return note;
+		}
+
+		// Metodo per rimuovere una nota
+		removeNote(noteId) {
+			this.notes = this.notes.filter(note => note.id !== noteId);
+			storageManager.saveState(this);
+		}
+
     // Funzioni di utility per l'analisi dei trend
     getMonthlyTrend(months = 6) {
         const trend = [];
@@ -128,28 +149,33 @@ class ExpenseManager {
         return trend;
     }
 
-    getTopExpenses(limit = 5) {
-        return [...this.expenses]
-            .sort((a, b) => b.amount - a.amount)
-            .slice(0, limit);
-    }
+		getTopExpenses(limit = 5) {
+			if (!this.expenses || this.expenses.length === 0) {
+					return [];
+			}
+			return [...this.expenses]
+					.sort((a, b) => b.amount - a.amount)
+					.slice(0, limit);
+		}
 
-    // Esportazione dati
-    generateMonthlyReport(month, year) {
-        const expenses = this.getExpensesByCategory(month, year);
-        const totalExpenses = this.calculateMonthlyExpenses(month, year);
-        const savings = this.estimateSavings(month, year);
+	// Also update the generateMonthlyReport method
+		generateMonthlyReport(month, year) {
+			const expenses = this.getExpensesByCategory(month, year);
+			const totalExpenses = this.calculateMonthlyExpenses(month, year);
+			const savings = this.estimateSavings(month, year);
 
-        return {
-            month,
-            year,
-            income: this.monthlyIncome,
-            expenses,
-            totalExpenses,
-            savings,
-            wishlist: this.wishlist.sort((a, b) => b.priority - a.priority)
-        };
-    }
+			return {
+					month,
+					year,
+					income: this.monthlyIncome || 0,
+					expenses,
+					totalExpenses,
+					savings,
+					wishlist: this.wishlist && this.wishlist.length > 0
+							? this.wishlist.sort((a, b) => b.priority - a.priority)
+							: []
+			};
+		}
 
     // Backup e ripristino
     exportData() {

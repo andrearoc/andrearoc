@@ -10,49 +10,54 @@
     <link rel="manifest" href="manifest.json">
     <script type="module" defer src="./public/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+		<!-- <script type="module" src="./public/js/modules/googleSheetsSynchronizer.js"></script> -->
 </head>
 <body>
     <header>
-        <h1>DrinApp</h1>
+			<h1>DrinApp</h1>
     </header>
     <main>
-        <div id="home" style="display: none;"> <!-- Hidden by default until authentication -->
-            <div class="tool-group">
-                <i class="fas fa-clock tool-button" data-tool="timeTracker"></i>
-                <span>Timer</span>
-            </div>
-            <div class="tool-group">
-                <i class="fas fa-calendar-alt tool-button" data-tool="calendar"></i>
-                <span>Calendario</span>
-            </div>
-            <div class="tool-group">
-                <i class="fas fa-id-card tool-button" data-tool="documents"></i>
-                <span>Documenti</span>
-            </div>
-            <div class="tool-group">
-                <i class="fas fa-qrcode tool-button" data-tool="qrGenerator"></i>
-                <span>QR</span>
-            </div>
-            <div class="tool-group">
-                <i class="fas fa-exchange-alt tool-button" data-tool="unitConverter"></i>
-                <span>Converitore</span>
-            </div>
-            <div class="tool-group">
-                <i class="fas fa-key tool-button" data-tool="passwordGenerator"></i>
-                <span>Password</span>
-            </div>
-            <div class="tool-group">
-                <i class="fa-solid fa-cat tool-button" data-tool="expenseEstimator"></i>
-                <span>Famiglia</span>
-            </div>
-        </div>
+			<div id="home" style="display: none;"> <!-- Hidden by default until authentication -->
+				<div class="tool-group">
+					<i class="fas fa-clock tool-button" data-tool="timeTracker"></i>
+					<span>Timer</span>
+				</div>
+				<div class="tool-group">
+					<i class="fas fa-calendar-alt tool-button" data-tool="calendar"></i>
+					<span>Calendario</span>
+				</div>
+				<div class="tool-group">
+					<i class="fas fa-id-card tool-button" data-tool="documents"></i>
+					<span>Documenti</span>
+				</div>
+				<div class="tool-group">
+					<i class="fas fa-qrcode tool-button" data-tool="qrGenerator"></i>
+					<span>QR</span>
+				</div>
+				<div class="tool-group">
+					<i class="fas fa-exchange-alt tool-button" data-tool="unitConverter"></i>
+					<span>Converitore</span>
+				</div>
+				<div class="tool-group">
+					<i class="fas fa-key tool-button" data-tool="passwordGenerator"></i>
+					<span>Password</span>
+				</div>
+				<div class="tool-group">
+					<i class="fa-solid fa-cat tool-button" data-tool="expenseEstimator"></i>
+					<span>Famiglia</span>
+				</div>
+				<div class="tool-group">
+					<i class="fa-solid fa-note-sticky tool-button" data-tool="notes"></i>
+					<span>Note</span>
+				</div>
+			</div>
     </main>
     <footer>
-        <p>&copy; 2025 Copyright by Drin</p>
-        <div class="setting-group">
-            <i id="editTheme" class="fas fa-palette"></i>
-            <i id="setting" class="fa-solid fa-gear"></i>
-        </div>
+			<p>&copy; 2025 Copyright by Drin</p>
+			<div class="setting-group">
+				<i id="editTheme" class="fas fa-palette"></i>
+				<i id="setting" class="fa-solid fa-gear"></i>
+			</div>
     </footer>
 </body>
 </html>
