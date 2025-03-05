@@ -30,10 +30,19 @@ const initializeApp = () => {
 
 	// Aggiungi il bottone di sincronizzazione
 	setupSyncButton();
+
+	// Imposta login/logout
+	setupLoginButton();
 };
 
 // Sincronizzazione dei dati da Google Sheets
 async function syncDataFromSheets() {
+	// Controlla l'autenticazione
+	if (!googleSheetsService.isAuthenticated()) {
+		alert('Effettua prima il login!');
+		return;
+	}
+
 	try {
 		// Autentica
 		await googleSheetsService.authenticate();
@@ -81,9 +90,9 @@ async function syncDataFromSheets() {
 		}
 
 		const notesData = await googleSheetsService.readSheet(
-		SPREADSHEET_ID,
-		SHEETS.NOTES
-	);
+			SPREADSHEET_ID,
+			SHEETS.NOTES
+		);
 
 		// Processa i dati delle note
 		if (notesData && notesData.length > 1) {
@@ -106,6 +115,12 @@ async function syncDataFromSheets() {
 
 // Sincronizzazione dei dati verso Google Sheets
 async function syncDataToSheets() {
+	// Controlla l'autenticazione
+	if (!googleSheetsService.isAuthenticated()) {
+		alert('Effettua prima il login!');
+		return;
+	}
+
 	try {
 		// Autentica
 		await googleSheetsService.authenticate();
@@ -173,6 +188,38 @@ async function syncDataToSheets() {
 	}
 }
 
+function setupLoginButton() {
+	const loginIcon = document.getElementById('login');
+
+	if (!loginIcon) {
+		console.error('Icona di login non trovata');
+		return;
+	}
+
+	loginIcon.addEventListener('click', async () => {
+		if (googleSheetsService.isAuthenticated()) {
+			// Se è già autenticato, fai logout
+			googleSheetsService.logout();
+			loginIcon.classList.remove('logged-in');
+			alert('Logout eseguito');
+		} else {
+			// Avvia il processo di autenticazione
+			const authenticated = await googleSheetsService.authenticate();
+			if (authenticated) {
+				loginIcon.classList.add('logged-in');
+				alert('Login eseguito con successo!');
+			} else {
+				alert('Errore durante il login');
+			}
+		}
+	});
+
+	// Imposta lo stato iniziale dell'icona
+	if (googleSheetsService.isAuthenticated()) {
+		loginIcon.classList.add('logged-in');
+	}
+}
+
 function setupSyncButton() {
 	const syncButton = document.getElementById('sync-button');
 
@@ -182,6 +229,11 @@ function setupSyncButton() {
 	}
 
 	syncButton.addEventListener('click', async () => {
+		if (!googleSheetsService.isAuthenticated()) {
+			alert('Effettua prima il login!');
+			return;
+		}
+
 		try {
 			await syncDataToSheets();
 			await syncDataFromSheets();

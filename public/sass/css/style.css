@@ -64,8 +64,14 @@ header {
   height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.08);
+}
+header h1, header #user {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
 }
 
 main {
