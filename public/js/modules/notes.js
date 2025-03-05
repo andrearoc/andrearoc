@@ -30,6 +30,10 @@ const NOTES = {
         // Funzione per aggiornare la lista delle note
         function updateNotesList() {
             const container = document.getElementById('notes-list');
+						if (!container) {
+                console.error('Elemento #notes-list non trovato.');
+                return;
+            }
             const notes = expenseManager.notes || [];
 
             if (notes.length === 0) {
@@ -87,6 +91,10 @@ const NOTES = {
 
         // Inizializza la lista delle note al primo caricamento
         updateNotesList();
+
+				setTimeout(() => {
+					updateNotesList();
+				}, 1000);
 
         return content;
     }

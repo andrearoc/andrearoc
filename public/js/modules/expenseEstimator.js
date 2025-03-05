@@ -50,19 +50,30 @@ class ExpenseManager {
     }
 
     // Gestione wishlist
-    addWishlistItem(name, estimatedPrice, priority, notes = '') {
-        const item = {
-            id: Date.now(),
-            name,
-            estimatedPrice,
-            priority,
-            notes,
-            dateAdded: new Date()
-        };
-        this.wishlist.push(item);
-        storageManager.saveState(this);
-        return item;
-    }
+		addWishlistItem(name, estimatedPrice, priority, notes = '') {
+			// Controlla se un elemento con lo stesso nome esiste già
+			const existingItem = this.wishlist.find(item =>
+					item.name === name &&
+					item.estimatedPrice === estimatedPrice
+			);
+
+			if (existingItem) {
+					// Se esiste già, potresti voler aggiornare l'item esistente o semplicemente non aggiungerlo
+					return existingItem;
+			}
+
+			const item = {
+					id: Date.now(),
+					name,
+					estimatedPrice,
+					priority,
+					notes,
+					dateAdded: new Date()
+			};
+			this.wishlist.push(item);
+			storageManager.saveState(this);
+			return item;
+	}
 
     removeWishlistItem(itemId) {
         this.wishlist = this.wishlist.filter(item => item.id !== itemId);
@@ -188,29 +199,21 @@ class ExpenseManager {
             const importedData = JSON.parse(text);
 
             switch(mode) {
-                case 'merge':
-                    // Combina le spese, evitando duplicati basati su ID
-                    const mergedExpenses = [...this.expenses];
-                    importedData.expenses.forEach(newExp => {
-                        if (!mergedExpenses.some(exp => exp.id === newExp.id)) {
-                            mergedExpenses.push(newExp);
-                        }
-                    });
-                    this.expenses = mergedExpenses;
+           case 'merge':
+                // Combina la wishlist, evitando duplicati basati su nome e prezzo stimato
+                const mergedWishlist = [...this.wishlist];
+                importedData.wishlist.forEach(newItem => {
+                    const isDuplicate = mergedWishlist.some(
+                        item => item.name === newItem.name &&
+                                item.estimatedPrice === newItem.estimatedPrice
+                    );
 
-                    // Combina la wishlist, evitando duplicati basati su ID
-                    const mergedWishlist = [...this.wishlist];
-                    importedData.wishlist.forEach(newItem => {
-                        if (!mergedWishlist.some(item => item.id === newItem.id)) {
-                            mergedWishlist.push(newItem);
-                        }
-                    });
-                    this.wishlist = mergedWishlist;
-
-                    // Per reddito e budget, mantiene i valori esistenti se presenti
-                    this.monthlyIncome = this.monthlyIncome || importedData.monthlyIncome;
-                    this.monthlyBudget = this.monthlyBudget || importedData.monthlyBudget;
-                    break;
+                    if (!isDuplicate) {
+                        mergedWishlist.push(newItem);
+                    }
+                });
+                this.wishlist = mergedWishlist;
+                break;
 
                 case 'append':
                     // Aggiunge semplicemente i nuovi dati in coda
